@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/My-Portfolio/" />
+  </head>
+  <body>
+    <p>Redirecting...</p>
+    <script>
+      // GitHub Pages SPA redirect fix
+      var l = window.location;
+      var repo = "/My-Portfolio";
+      var redirect = l.protocol + "//" + l.host + repo + "/index.html?redirect=" + l.pathname + l.search + l.hash;
+      window.location.replace(redirect);
+    </script>
+  </body>
+</html>
