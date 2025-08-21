@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  a {
+    @apply text-amber-400 no-underline;
+    @apply border-teal-700;
+    @apply font-semibold;
+    @apply transition-colors duration-200;
+ 
+
+  }
+
+  a:hover {
+    @apply text-amber-500;
+    @apply border-teal-500;
+  }
+}
