@@ -8,8 +8,19 @@ const CvModal = ({ isOpen, onClose }) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+
+    // ✅ Disable body scroll when modal is open
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = ""; // cleanup
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -17,19 +28,19 @@ const CvModal = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose} // close on outside click
+          onClick={onClose}
         >
-          {/* Stop propagation so clicking inside the CV doesn’t close */}
+          {/* 🔥 Modal box */}
           <motion.div
-            className="relative w-11/12 h-[95vh] bg-white rounded-2xl shadow-2xl overflow-hidden"
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.85, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            className="relative mt-[8vh] w-11/12 md:w-3/4 h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden"
+            initial={{ scale: 0.9, opacity: 0, y: 40 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 40 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -41,12 +52,14 @@ const CvModal = ({ isOpen, onClose }) => {
             </button>
 
             {/* CV Document */}
-            <embed
-              src="https://drive.google.com/file/d/1llhCph2yn3D_dmOhxlCXWxHQ39z5t4mk/preview"
-              type="application/pdf"
-              className="w-full h-full"
-              title="CV Document"
-            />
+            <iframe
+  src="https://drive.google.com/file/d/1llhCph2yn3D_dmOhxlCXWxHQ39z5t4mk/preview"
+  className="w-full h-full"
+  allow="autoplay"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  title="CV Document"
+/>
+
           </motion.div>
         </motion.div>
       )}

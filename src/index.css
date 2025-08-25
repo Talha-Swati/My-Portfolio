@@ -1,22 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;700&display=swap');
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background: linear-gradient(-45deg, #000000, #050b1a, #04140e, #000000);
+  background: linear-gradient(-45deg, #060b22, #092030, #02181b, #10031f);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  animation: galaxy 18s ease infinite;
+  min-height: 100vh;   /* ensures height but doesn't block scrolling */
 }
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-y: auto;   /* force vertical scrollbar to work */
+}
+
+/* Bubble effect */
+.bubble {
+  position: fixed;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: rise 20s linear infinite;
+  z-index: -1; /* stays behind content */
+}
+
+/* Different speeds & positions for multiple bubbles */
+.bubble:nth-child(1) {
+  left: 10%;
+  animation-duration: 25s;
+  width: 50px;
+  height: 50px;
+}
+.bubble:nth-child(2) {
+  left: 30%;
+  animation-duration: 18s;
+}
+.bubble:nth-child(3) {
+  left: 50%;
+  animation-duration: 22s;
+  width: 60px;
+  height: 60px;
+}
+.bubble:nth-child(4) {
+  left: 70%;
+  animation-duration: 26s;
+}
+.bubble:nth-child(5) {
+  left: 90%;
+  animation-duration: 20s;
+  width: 45px;
+  height: 45px;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Background gradient animation */
+@keyframes galaxy {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+
+ /* other code than bg animations  */
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -37,7 +93,7 @@ html {
 
 .animate-gradient-x {
   background-size: 200% 200%;
-  animation: gradient-x 8s ease infinite;
+  animation: gradient-x 2s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -54,5 +110,22 @@ html {
 .animate-gradient {
   background-size: 300% 300%;
   animation: gradient 8s ease infinite;
+}/* global.css */
+
+.cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  background: #f59e0b;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
 }
 
+.cursor.hovered {
+  width: 50px;
+  height: 50px;
+  background: rgba(245, 158, 11, 0.3);
+}

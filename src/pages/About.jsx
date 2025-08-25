@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { FaCode, FaProjectDiagram, FaUsers } from "react-icons/fa";
+import {
+  FaCode,
+  FaProjectDiagram,
+  FaUsers,
+  FaGraduationCap,
+  FaCertificate,
+  FaFileAlt,
+} from "react-icons/fa";
 
 // Counter Component
 const Counter = ({ end }) => {
@@ -29,21 +36,67 @@ const Counter = ({ end }) => {
 };
 
 const About = () => {
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [docUrl, setDocUrl] = useState("");
+
+  const openModal = (url) => {
+    setDocUrl(url);
+    setShowModal(true);
+    document.body.style.overflow = "hidden"; // lock background scroll
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setDocUrl("");
+    document.body.style.overflow = "auto"; // restore scroll
+  };
+
+  const certifications = [
+    {
+      icon: <FaCertificate className="text-teal-400 text-2xl" />,
+      text: "Introduction to Artificial Intelligence by IBM (Completed May 2024)",
+      url: "https://drive.google.com/file/d/1lRjmIesUmMm4yUkTwUQdA1kwGNU7r9UM/preview",
+    },
+    {
+      icon: <FaCertificate className="text-teal-400 text-2xl" />,
+      text: "Introduction to Web Development with HTML, CSS & JavaScript by IBM (Completed Aug 2023)",
+      url: "https://drive.google.com/file/d/17eblrwEsEMuHC0hC6RnYjFoKNNwxUc_Q/preview",
+    },
+    {
+      icon: <FaCertificate className="text-cyan-400 text-2xl" />,
+      text: "Freelancing by DigiSkills",
+      url: "https://drive.google.com/file/d/1L5PGsoY8zC6vAQRnxTgjkA-mMNoqr6PI/preview",
+    },
+    {
+      icon: <FaCertificate className="text-cyan-400 text-2xl" />,
+      text: "Graphic Design by DigiSkills",
+      url: "https://drive.google.com/file/d/1BRpuZJyBaCiRGB-_PEUacJd5zziRBbLR/preview",
+    },
+    {
+      icon: <FaFileAlt className="text-green-400 text-2xl" />,
+      text: "Internship at Codexcue Tech Sol",
+      url: "https://drive.google.com/file/d/1zMQnubVIJgVIY_vdQyGFi7iVEX8ytchh/preview",
+    },
+    {
+      icon: <FaFileAlt className="text-yellow-400 text-2xl" />,
+      text: "Recommendation Letter from Codexcue Tech Sol",
+      url: "https://drive.google.com/file/d/1nPoiu64Afwon8h4NFCs2YNRvH-IaQxjr/preview",
+    },
+  ];
+
   return (
     <>
       <Navbar />
       <div className="relative min-h-screen text-white overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-black to-gray-950 animate-gradient-x opacity-90"></div>
-
         {/* About Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           {/* Section Heading */}
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-10 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
           >
             About Me
           </motion.h2>
@@ -53,53 +106,57 @@ const About = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-16"
+            className="text-sm sm:text-base md:text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12 sm:mb-16"
           >
             I’m a passionate developer with expertise in building modern, scalable, and visually stunning web applications. 
-            My focus is on creating smooth user experiences with clean and efficient code.
+            My process starts with understanding the user and ends with measurable results: faster load times, 
+            better mobile interactions, and intuitive navigation that visitors love.
           </motion.p>
 
           {/* Animated Counters */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 text-center mb-16 sm:mb-20">
             {[
-              { icon: <FaCode size={40} className="text-teal-400" />, value: 500, label: "Hours of Coding" },
-              { icon: <FaProjectDiagram size={40} className="text-cyan-400" />, value: 20, label: "Projects Completed" },
-              { icon: <FaUsers size={40} className="text-green-400" />, value: 10, label: "Happy Clients" },
+              { icon: <FaCode size={30} className="text-teal-400 sm:text-3xl" />, value: 500, label: "Hours of Coding" },
+              { icon: <FaProjectDiagram size={30} className="text-cyan-400 sm:text-3xl" />, value: 20, label: "Projects Completed" },
+              { icon: <FaUsers size={30} className="text-green-400 sm:text-3xl" />, value: 10, label: "Happy Clients" },
             ].map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="bg-black/50 backdrop-blur-lg rounded-2xl p-8 shadow-lg hover:shadow-teal-500/30 transition-all"
+                className="bg-black/50 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-teal-500/30 transition-all flex flex-col items-center"
               >
-                <div className="flex justify-center mb-4">{item.icon}</div>
+                <div className="flex justify-center items-center mb-3 sm:mb-4">
+                  {item.icon}
+                </div>
                 <motion.h3
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ duration: 0.6 }}
-                  className="text-4xl font-bold text-teal-400"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-400"
                 >
                   <Counter end={item.value} />
                 </motion.h3>
-                <p className="text-gray-400">{item.label}</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-400">{item.label}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Mission & Vision */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 mb-16 sm:mb-20">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-black/60 backdrop-blur-lg rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/30 transition-all"
+              className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-cyan-500/30 transition-all"
             >
-              <h3 className="text-2xl font-semibold text-cyan-400 mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-cyan-400 mb-3">
                 🚀 Mission
               </h3>
-              <p className="text-gray-300">
-                To craft digital solutions that empower businesses and individuals by blending technology and creativity.
+              <p className="text-sm sm:text-base text-gray-300">
+                To create scalable, user-friendly web applications that not only solve problems for businesses but also meet the high
+                standards companies look for in a modern frontend developer.
               </p>
             </motion.div>
 
@@ -107,18 +164,87 @@ const About = () => {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-black/60 backdrop-blur-lg rounded-2xl p-8 shadow-lg hover:shadow-teal-500/30 transition-all"
+              className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-teal-500/30 transition-all"
             >
-              <h3 className="text-2xl font-semibold text-teal-400 mb-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-teal-400 mb-3">
                 🎯 Vision
               </h3>
-              <p className="text-gray-300">
-                To become a leading developer who delivers innovative solutions with impactful user experiences.
+              <p className="text-sm sm:text-base text-gray-300">
+                To grow as a frontend developer by contributing to innovative teams, partnering with businesses, and delivering solutions that excel 
+                in performance, usability, and design impact.
               </p>
             </motion.div>
           </div>
+
+          {/* Education & Certifications */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-10 shadow-lg hover:shadow-teal-500/30 transition-all"
+          >
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500">
+              🎓 Education & Certifications
+            </h3>
+
+            <div className="space-y-6">
+              {/* Degree */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black/40 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 transition-all">
+                <FaGraduationCap className="text-cyan-400 text-2xl mb-2 sm:mb-0 sm:mr-3" />
+                <p className="text-sm sm:text-base md:text-lg text-gray-300">
+                  Completed <span className="text-teal-400 font-semibold">Bachelor's of Science in Computer Science</span> from NUML University Islamabad, Pakistan.
+                </p>
+              </div>
+
+              {/* Certifications */}
+              {certifications.map((cert, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black/40 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 transition-all"
+                >
+                  <div className="mb-2 sm:mb-0 sm:mr-3 flex justify-center">{cert.icon}</div>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-300">
+                    {cert.text}
+                    <button
+                      onClick={() => openModal(cert.url)}
+                      className="text-cyan-400 underline ml-2 hover:text-cyan-300"
+                    >
+                      View
+                    </button>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-black rounded-2xl shadow-lg w-full max-w-4xl h-[80vh] relative"
+            onClick={(e) => e.stopPropagation()} // prevent closing on iframe click
+          >
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 bg-gray-200 text-black px-3 py-1 rounded-full text-lg font-bold hover:bg-gray-300 transition"
+            >
+              ✕
+            </button>
+            <iframe
+              src={docUrl}
+              title="Certificate"
+              className="w-full h-full rounded-xl"
+              allow="autoplay"
+            ></iframe>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );

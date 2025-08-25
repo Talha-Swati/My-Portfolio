@@ -1,149 +1,179 @@
 import React, { useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaLinkedin } from "react-icons/fa";
 import ReCAPTCHA from "react-google-recaptcha";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const recaptchaRef = useRef();
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!captchaVerified) {
-    alert("Please verify you are human!");
-    return;
-  }
+    if (!captchaVerified) {
+      alert("Please verify you are human!");
+      return;
+    }
 
-  // Updated template parameters for EmailJS
-  const templateParams = {
-    from_name: e.target.user_name.value, // sender's name
-    email: e.target.user_email.value,    // sender's email
-    message: e.target.message.value,
+    const templateParams = {
+      from_name: e.target.user_name.value,
+      email: e.target.user_email.value,
+      message: e.target.message.value,
+    };
+
+    emailjs
+      .send(
+        "service_hir6x6i",
+        "template_gu9gbrb",
+        templateParams,
+        "NTAXYgwkYqoNSYeG4"
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          e.target.reset();
+          recaptchaRef.current.reset();
+          setCaptchaVerified(false);
+        },
+        (error) => {
+          alert("Error sending message: " + error.text);
+        }
+      );
   };
 
-  emailjs
-    .send(
-      "service_hir6x6i", // Replace with your EmailJS service ID
-      "template_gu9gbrb", // Replace with your EmailJS template ID
-      templateParams,
-      "NTAXYgwkYqoNSYeG4" // Replace with your EmailJS public key
-    )
-    .then(
-      (result) => {
-        alert("Message sent successfully!");
-        e.target.reset();
-        recaptchaRef.current.reset();
-        setCaptchaVerified(false);
-      },
-      (error) => {
-        alert("Error sending message: " + error.text);
-      }
-    );
-};
+  // Animation variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  };
 
+  const stagger = {
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white min-h-screen flex flex-col">
+    <div className="text-white min-h-screen flex flex-col">
       {/* Navbar */}
       <Navbar />
 
-      {/* Contact Section */}
-      <div className="flex-grow flex flex-col items-center justify-center px-6 py-16">
-        <h2 className="text-4xl font-bold text-center mb-8">
-          Get In <span className="text-purple-500">Touch</span>
-        </h2>
-        <p className="text-center text-gray-300 max-w-2xl mb-12">
-          Feel free to reach out for collaborations, freelance projects, or just
-          to say hi! I’m always excited to connect with passionate people.
-        </p>
+      {/* Clean CTA Text */}
+      <section className="py-12 px-6 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          Let’s Discuss Your {" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
+            Project
+          </span>{" "}
+        </h1>
+        <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-400">
+          Let’s collaborate and create something meaningful for you         </p>
+      </section>
 
-        <div className="grid md:grid-cols-2 gap-10 w-full max-w-5xl">
+      {/* Contact Section */}
+      <motion.div
+        className="flex-grow container mx-auto px-4 sm:px-6 py-16"
+        initial="hidden"
+        animate="visible"
+        variants={stagger}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-gray-800 bg-opacity-60 p-8 rounded-2xl shadow-lg backdrop-blur-md border border-gray-700">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+          <motion.div
+            id="contact-form"
+            variants={fadeUp}
+            className="bg-black bg-opacity-70 p-6 md:p-8 rounded-2xl shadow-lg backdrop-blur-md border border-gray-500 hover:shadow-xl hover:shadow-cyan-500/30 transition-shadow duration-300"
+          >
+<h3 className="text-teal-400 text-2xl font-semibold mb-6 text-center">
+              Send a Message
+            </h3>
             <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="user_name"
-                placeholder="Your Name"
-                className="p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Full Name"
+                className="p-3 rounded-lg bg-white/15 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 w-full text-white"
                 required
               />
               <input
                 type="email"
                 name="user_email"
                 placeholder="Your Email"
-                className="p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="p-3 rounded-lg bg-white/15 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 w-full text-white"
                 required
               />
               <textarea
                 name="message"
                 placeholder="Your Message"
                 rows="5"
-                className="p-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="p-3 rounded-lg bg-white/15 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 w-full text-white"
                 required
               ></textarea>
 
               {/* reCAPTCHA */}
+              
               <ReCAPTCHA
-                sitekey="6LcCAKsrAAAAABldTA-4rqh5YyWZiPcWdqsCQpKD" // Replace with your reCAPTCHA site key
+              
+                sitekey="6LcCAKsrAAAAABldTA-4rqh5YyWZiPcWdqsCQpKD"
                 ref={recaptchaRef}
                 onChange={() => setCaptchaVerified(true)}
               />
 
               <button
                 type="submit"
-                className="bg-purple-600 hover:bg-purple-700 transition-all py-3 rounded-lg font-semibold shadow-md"
+                className="relative px-5 py-3 overflow-hidden font-semibold rounded-xl text-teal-400 border-2 border-teal-500
+                hover:text-white hover:border-cyan-500 transition-colors duration-300 group w-full text-center"
               >
-                Send Message
+                <span className="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out"></span>
+                <span className="relative z-10">Send Message</span>
               </button>
             </form>
-          </div>
+          </motion.div>
 
-          {/* Contact Info + Socials */}
-          <div className="flex flex-col items-center justify-center bg-gray-800 bg-opacity-60 p-8 rounded-2xl shadow-lg backdrop-blur-md border border-gray-700">
-            <h3 className="text-2xl font-semibold mb-6">Connect With Me</h3>
-            <p className="text-gray-300 mb-6 text-center">
-              You can also find me on these platforms:
-            </p>
-            <div className="flex space-x-6 text-3xl">
-              <a
-                href="mailto:talhariaz797@gmail.com?subject=Hello%20Talha&body=I%20want%20to%20contact%20you"
-                className="hover:text-purple-400 transition"
-              >
-                <FaEnvelope />
-              </a>
-              <a
-                href="https://github.com/Talha-Swati"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-purple-400 transition"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/talha-riaz-swati/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-purple-400 transition"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://instagram.com/talha_riaz_swati"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-purple-400 transition"
-              >
-                <FaInstagram />
-              </a>
+          {/* Contact Info Cards */}
+          <motion.div variants={fadeUp} className="flex flex-col space-y-6">
+            {/* Email */}
+            <div className="flex items-center p-5 bg-black rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl hover:shadow-teal-500/40 transition duration-300">
+              <FaEnvelope className="text-3xl mr-5 text-teal-400" />
+              <div>
+                <p className="text-base font-semibold text-teal-300">Email</p>
+                <p className="text-sm text-gray-300">talhariaz797@gmail.com</p>
+                <p className="text-md text-gray-500">Response within 4 hours</p>
+              </div>
             </div>
-          </div>
+
+            {/* Phone */}
+            <div className="flex items-center p-5 bg-black rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl hover:shadow-cyan-500/40 transition duration-300">
+              <FaPhone className="text-3xl mr-5 text-teal-400" />
+              <div>
+                <p className="text-base font-semibold text-teal-300">Phone</p>
+                <p className="text-sm text-gray-300">+92 328 5000209</p>
+                <p className="text-md text-gray-500">Mon-Sat 9AM-6PM PKT</p>
+              </div>
+            </div>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/talha-riaz-swati/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center p-5 bg-black rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl hover:shadow-cyan-500/40 transition duration-300"
+            >
+              <FaLinkedin className="text-3xl mr-5 text-teal-400" />
+              <div>
+                <p className="text-base font-semibold text-teal-300">LinkedIn</p>
+                <p className="text-sm text-gray-300">talha-riaz-swati</p>
+                <p className="text-xs text-gray-500">Let’s connect </p>
+              </div>
+            </a>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Footer */}
       <Footer />

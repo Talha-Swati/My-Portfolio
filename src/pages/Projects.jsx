@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import { FaGithub, FaVideo } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import hqsr1 from "../assets/hqsr1.jpeg";
-import hqsr2 from "../assets/hqsr2.jpeg";
-import hqsrmain from "../assets/hqsrmain.jpeg";
+import hqsr1 from "../assets/hqsr1.webp";
+import hqsr2 from "../assets/hqsr2.webp";
+import hqsrmain from "../assets/hqsrmain.webp";
+import stp1 from "../assets/stp1.webp";
+import stp2 from "../assets/stp2.webp";  
+import stp3 from "../assets/stp3.webp";  
 
 const projects = [
   {
@@ -15,7 +18,7 @@ const projects = [
     tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
     github: "https://github.com/Talha-Swati/Smart-Task-Planner.git",
     video: "https://drive.google.com/file/d/1Aeg4aylhvSncey5XuIIA-7MPKxisDQ6r/preview",
-    images: ["/stp1.png", "/stp2.png", "/stp3.png"],
+    images: [stp1, stp2, stp3],
   },
   {
     title: "HQSR - Holy Quran Speech Recognition",
@@ -31,7 +34,7 @@ const projects = [
     description:
       "A weather forecasting web app with real-time API integration, clean UI, and dynamic weather updates.",
     tech: ["React.js", "Node.js", "Weather API", "TailwindCSS"],
-    github: "https://github.com/yourusername/skypulsehttps://github.com/Talha-Swati/SkyPulse.git",
+    github: "https://github.com/Talha-Swati/SkyPulse.git",
     video: "https://drive.google.com/your-skypulse-demo-video",
     images: ["/sky1.png", "/sky2.png", "/sky3.png"],
   },
@@ -46,36 +49,35 @@ const Projects = () => {
       <Navbar />
 
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-black to-gray-950 animate-gradient-x opacity-90"></div>
 
       {/* Projects Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-pink-500"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
         >
           🚀 My Projects
         </motion.h2>
 
-        <div className="space-y-20">
+        <div className="space-y-12 sm:space-y-16">
           {projects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className={`flex flex-col lg:flex-row items-center gap-10 ${
+              className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
                 index % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}
             >
               {/* Project Images */}
-              <div className="flex-1 grid grid-cols-3 gap-4">
+              <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
                 {project.images.map((img, i) => (
                   <motion.div
                     key={i}
-                    className="relative h-40 bg-gray-800 rounded-xl overflow-hidden shadow-lg group cursor-pointer"
+                    className="relative h-40 sm:h-48 bg-gray-800 rounded-xl overflow-hidden shadow-lg group cursor-pointer"
                     onClick={() => setSelectedImage(img)}
                   >
                     <motion.img
@@ -88,18 +90,20 @@ const Projects = () => {
               </div>
 
               {/* Project Content */}
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-amber-400 mb-4">
+              <div className="flex-1 w-full">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-6">{project.description}</p>
+                <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6">
+                  {project.description}
+                </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 text-sm rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                      className="px-3 py-1 text-xs sm:text-sm rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20"
                     >
                       {tech}
                     </span>
@@ -107,13 +111,13 @@ const Projects = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-3">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gray-800 px-5 py-2 rounded-lg text-sm hover:bg-gray-700 transition"
+                      className="flex items-center gap-2 bg-black px-4 py-2 text-white rounded-lg text-xs sm:text-sm hover:bg-white/10 hover:text-gray-100 transition-normal"
                     >
                       <FaGithub /> Code
                     </a>
@@ -121,7 +125,7 @@ const Projects = () => {
                   {project.video && (
                     <button
                       onClick={() => setSelectedVideo(project.video)}
-                      className="flex items-center gap-2 bg-gray-700 px-5 py-2 rounded-lg text-sm hover:bg-gray-600 transition"
+                      className="flex items-center gap-2 bg-black px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 transition"
                     >
                       <FaVideo /> Demo
                     </button>
@@ -136,7 +140,7 @@ const Projects = () => {
       {/* Image Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4 sm:px-6"
           onClick={() => setSelectedImage(null)}
         >
           <motion.img
@@ -146,7 +150,7 @@ const Projects = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
-            className="max-w-4xl max-h-[85vh] rounded-lg shadow-2xl"
+            className="max-w-full sm:max-w-4xl max-h-[80vh] rounded-lg shadow-2xl"
           />
         </div>
       )}
@@ -154,7 +158,7 @@ const Projects = () => {
       {/* Video Modal */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4 sm:px-6"
           onClick={() => setSelectedVideo(null)}
         >
           <motion.div
@@ -162,7 +166,7 @@ const Projects = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
-            className="w-[90%] max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
+            className="w-full sm:w-[90%] max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()} // prevent closing on video click
           >
             <iframe
