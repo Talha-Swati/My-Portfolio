@@ -12,8 +12,19 @@ import stp3 from "../assets/stp3.webp";
 import SkyPulse1 from "../assets/SkyPulse1.png";
 import SkyPulse2 from "../assets/SkyPulse2.png";
 import SkyPulse3 from "../assets/SkyPulse3.png";
+import courses from "../assets/courses.png"
+import lms1 from "../assets/lms1.png"
+import dashboard from "../assets/dashboard.png"
 
 const projects = [
+  {
+    title: "TeachGen LMS",
+    description:
+      "TeachGen LMS is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking. The project showcases a professional LMS solution that is both scalable and user-friendly.",
+    tech: ["WordPress", "Astra Theme", "Tutor LMS", "PHP", "MySQL"],
+    live: "https://teachgen.free.nf/",
+    images: [courses, lms1, dashboard], // you can add screenshots here later like teachgen1, teachgen2, etc.
+  },
   {
     title: "Smart Task Planner",
     description:
