@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import CvModal from "./CvModal";
-import dp1 from "../assets/dp1.jpg";
+import dp3 from "../assets/dp3.png";
 
 const Bio = () => {
   const [isCvOpen, setIsCvOpen] = useState(false);
@@ -30,7 +30,7 @@ const Bio = () => {
           transition={{ duration: 1 }}
         >
           <img
-            src={dp1}
+            src={dp3}
             alt="Profile"
             className="w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full object-cover shadow-lg border-4 border-amber-400 cursor-pointer hover:scale-105 transition-transform duration-300"
             onClick={() => setIsImageOpen(true)}
@@ -133,7 +133,7 @@ const Bio = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={dp1}
+              src={dp3}
               alt="Profile Zoomed"
               className="w-full max-w-md sm:max-w-lg max-h-[70vh] rounded-xl shadow-2xl border-4 border-gray-900 object-cover"
             />

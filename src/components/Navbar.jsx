@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="p-4 bg-black border-3 border-white/10 text-lg shadow-md sticky top-0 z-50 flex items-center justify-between">
+      <nav className="p-4 bg-black border-3  border-white/10 text-lg shadow-md sticky top-0 z-50 flex items-center justify-between">
        {/* Logo (fixed height, zoomed inside, minimal hover) */}
 <Link to="/" className="flex items-center ml-6"> {/* margin from left */}
   <div className="relative h-12 w-45 overflow-hidden flex items-center">
@@ -49,7 +49,7 @@ const Navbar = () => {
 
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 items-center font-semibold">
+        <ul className="hidden md:flex gap-8 items-center font-normal">
           {menuItems.map((item, index) => (
             <li key={item} className="relative group">
               <Link
@@ -59,7 +59,7 @@ const Navbar = () => {
                 {item}
                 {/* Underline animation */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-teal-400 transition-all duration-500 ${
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-cyan-400 transition-all duration-500 ${
                     animateOnce ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                   style={{
@@ -117,7 +117,7 @@ const Navbar = () => {
           <Link
             key={item}
             to={`/${item.toLowerCase() === "home" ? "" : item.toLowerCase()}`}
-            className="relative block w-fit font-semibold text-gray-300 transition-all duration-300 group"
+            className="relative block w-fit font-normal text-gray-300 transition-all duration-300 group"
             onClick={() => setIsMenuOpen(false)}
           >
             {item}

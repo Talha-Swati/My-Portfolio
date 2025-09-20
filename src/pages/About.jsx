@@ -10,6 +10,7 @@ import {
   FaCertificate,
   FaFileAlt,
 } from "react-icons/fa";
+import coverImg from "../assets/dp3.png"; // <-- cover image
 
 // Counter Component
 const Counter = ({ end }) => {
@@ -88,30 +89,52 @@ const About = () => {
   return (
     <>
       <Navbar />
+
+ {/* --- COVER / HERO IMAGE (below navbar) --- */}
+<section className="relative text-white overflow-hidden">
+  {/* ↓ reduced heights */}
+  <div className="relative h-[220px] sm:h-[320px] md:h-[300px]">
+ <img
+  src={coverImg}
+  alt="About cover"
+  className="absolute inset-0 w-full h-full object-cover object-[center_34%]"
+/>
+
+    {/* overlay for readability */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90" />
+
+    {/* centered heading + paragraph */}
+    <div className="relative z-10 h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-4">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
+      >
+        About Me
+      </motion.h2>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-sm sm:text-base md:text-lg text-gray-200 max-w-3xl"
+      >
+        I’m a passionate developer with expertise in building modern, scalable, and visually stunning web applications.
+        My process starts with understanding the user and ends with measurable results: faster load times,
+        better mobile interactions, and intuitive navigation that visitors love.
+      </motion.p>
+    </div>
+  </div>
+</section>
+{/* --- END COVER --- */}
+
+
+
       <div className="relative min-h-screen text-white overflow-hidden">
         {/* About Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          {/* Section Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-10 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
-          >
-            About Me
-          </motion.h2>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-sm sm:text-base md:text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12 sm:mb-16"
-          >
-            I’m a passionate developer with expertise in building modern, scalable, and visually stunning web applications. 
-            My process starts with understanding the user and ends with measurable results: faster load times, 
-            better mobile interactions, and intuitive navigation that visitors love.
-          </motion.p>
+         
 
           {/* Animated Counters */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 text-center mb-16 sm:mb-20">
@@ -170,7 +193,7 @@ const About = () => {
                 🎯 Vision
               </h3>
               <p className="text-sm sm:text-base text-gray-300">
-                To grow as a frontend developer by contributing to innovative teams, partnering with businesses, and delivering solutions that excel 
+                To grow as a frontend developer by contributing to innovative teams, partnering with businesses, and delivering solutions that excel
                 in performance, usability, and design impact.
               </p>
             </motion.div>

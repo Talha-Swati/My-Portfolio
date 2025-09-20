@@ -15,6 +15,8 @@ import SkyPulse3 from "../assets/SkyPulse3.png";
 import courses from "../assets/courses.png"
 import lms1 from "../assets/lms1.png"
 import dashboard from "../assets/dashboard.png"
+import coverImg from "../assets/projects.jpg"; // <-- cover image
+
 
 const projects = [
   {
@@ -61,19 +63,31 @@ const Projects = () => {
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       <Navbar />
-
-      {/* Projects Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
-        >
-          🚀 My Projects
-        </motion.h2>
-
-        {/* Section Caption */}
+      
+       {/* --- COVER / HERO IMAGE (below navbar) --- */}
+      <section className="relative text-white overflow-hidden">
+        {/* ↓ reduced heights */}
+        <div className="relative h-[220px] sm:h-[320px] md:h-[300px]">
+       <img
+        src={coverImg}
+        alt="About cover"
+        className="absolute inset-0 w-full h-full object-cover object-[center_34%]"
+      />
+      
+          {/* overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90" />
+      
+          {/* centered heading + paragraph */}
+          <div className="relative z-10 h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-4">
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
+            >
+             My Projects
+            </motion.h2>
+                 {/* Section Caption */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,6 +98,15 @@ const Projects = () => {
           design, and functionality into real-world applications. Each project
           reflects problem-solving, clean code, and modern UI/UX practices.
         </motion.p>
+      
+          </div>
+        </div>
+      </section>
+      {/* --- END COVER --- */}
+      
+
+      {/* Projects Section */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 
         <div className="space-y-12 sm:space-y-16">
           {projects.map((project, index) => (
