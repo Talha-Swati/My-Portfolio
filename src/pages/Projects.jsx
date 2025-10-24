@@ -25,9 +25,9 @@ import aviation3 from "../assets/aviation3.png";
 const projects = [
    {
     
-    title: "Aviation Training LMS",
+    title: "AT-Drone LMS",
     description:
-      "AT-Drone LMS is a WordPress-based eLearning management system designed for FAA Part-107 Remote Pilot training. Built with the Fox LMS Pro plugin and WooCommerce integration, it delivers a complete learning experience with structured video lessons, quizzes, exams, certificates, and automated bulk-purchase coupon generation. The platform offers responsive design, student dashboards, and admin-level course management, showcasing a professional and scalable LMS tailored for aviation education.",
+      "AT-Drone LMS is a WordPress-based eLearning management system designed for aviation training. Built with the Fox LMS Pro plugin and WooCommerce integration, it delivers a complete learning experience with structured video lessons, quizzes, exams, certificates, and automated bulk-purchase coupon generation. The platform offers responsive design, student dashboards, and admin-level course management, showcasing a professional and scalable LMS tailored for aviation education.",
     tech: ["WordPress", "Astra Theme", "Fox LMS","JS","CSS", "PHP", "MySQL"],
     live: "https://aviation.at-drone.com/",
     images: [aviation1, aviation2, aviation3], // you can add screenshots here later like teachgen1, teachgen2, etc.

@@ -11,15 +11,14 @@ const skills = [
   { name: "MongoDB", level: 75, icon: <SiMongodb className="text-green-400" /> },
   { name: "Express.js", level: 75, icon: <span className="text-xl font-bold text-gray-300">Ex</span> },
   { name: "Digital Marketing", level: 80, icon: <span className="text-xl font-bold text-gray-300">DM</span> },
-
   { name: "Wordpress", level: 85, icon: <FaWordpress className="text-sky-600" /> },
   { name: "Python", level: 70, icon: <FaPython className="text-yellow-400" /> },
 ];
 
 const Skills = () => {
   return (
-<section className="relative z-10 bg-black/60 backdrop-blur-lg py-20 px-6 
-                    mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-32">
+    <section className="relative z-10 bg-transparent py-20 px-6 
+                        mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-32">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,7 +57,6 @@ const Skills = () => {
               {skill.level}%
             </p>
           </motion.div>
-
         ))}
       </div>
     </section>
