@@ -16,10 +16,24 @@ import courses from "../assets/courses.png"
 import lms1 from "../assets/lms1.png"
 import dashboard from "../assets/dashboard.png"
 import coverImg from "../assets/projects.jpg"; // <-- cover image
+import aviation1 from "../assets/aviation1.png";
+import aviation2 from "../assets/aviation2.png";
+import aviation3 from "../assets/aviation3.png";
+
 
 
 const projects = [
+   {
+    
+    title: "Aviation Training LMS",
+    description:
+      "AT-Drone LMS is a WordPress-based eLearning management system designed for FAA Part-107 Remote Pilot training. Built with the Fox LMS Pro plugin and WooCommerce integration, it delivers a complete learning experience with structured video lessons, quizzes, exams, certificates, and automated bulk-purchase coupon generation. The platform offers responsive design, student dashboards, and admin-level course management, showcasing a professional and scalable LMS tailored for aviation education.",
+    tech: ["WordPress", "Astra Theme", "Fox LMS","JS","CSS", "PHP", "MySQL"],
+    live: "https://aviation.at-drone.com/",
+    images: [aviation1, aviation2, aviation3], // you can add screenshots here later like teachgen1, teachgen2, etc.
+  },
   {
+
     title: "TeachGen LMS",
     description:
       "TeachGen LMS is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking. The project showcases a professional LMS solution that is both scalable and user-friendly.",

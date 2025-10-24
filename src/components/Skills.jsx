@@ -14,7 +14,6 @@ const skills = [
 
   { name: "Wordpress", level: 85, icon: <FaWordpress className="text-sky-600" /> },
   { name: "Python", level: 70, icon: <FaPython className="text-yellow-400" /> },
-  { name: "Java", level: 65, icon: <FaJava className="text-red-400" /> }
 ];
 
 const Skills = () => {
