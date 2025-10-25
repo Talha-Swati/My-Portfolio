@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import CvModal from "./CvModal";
-import logo from "../assets/logo.png"; // ✅ Import your logo
+import logo from "../assets/logo1.png"; // ✅ Import your logo
 
 const Navbar = () => {
   const [isCvOpen, setIsCvOpen] = useState(false);
@@ -36,13 +36,13 @@ const Navbar = () => {
     <header>
       <nav className="p-4 bg-black border-3  border-white/10 text-lg shadow-md sticky top-0 z-50 flex items-center justify-between">
        {/* Logo (fixed height, zoomed inside, minimal hover) */}
-<Link to="/" className="flex items-center ml-6"> {/* margin from left */}
-  <div className="relative h-12 w-45 overflow-hidden flex items-center">
+<Link to="/" className="flex items-center ml-4"> {/* margin from left */}
+  <div className="relative h-15 w-50  flex items-center">
     <img
       src={logo}
       alt="Logo"
-      className="h-full w-full object-contain select-none cursor-pointer scale-600
-                 transition-transform duration-300 mt-5 ease-in-out hover:scale-650 hover:brightness-110"
+      className="h-full w-full object-contain select-none cursor-pointer scale-400
+                 transition-transform duration-300 mt-5 ease-in-out hover:scale-430 hover:brightness-110"
     />
   </div>
 </Link>

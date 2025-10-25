@@ -101,7 +101,7 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="relative z-10 border-t border-gray-600 text-center py-2 sm:py-4 text-xs sm:text-sm text-gray-300 w-full">
-        © {new Date().getFullYear()} My Portfolio. All rights reserved. |{" "}
+        © {new Date().getFullYear()} Talha Riaz. All rights reserved. |{" "}
         <Link to="/privacy-policy" className="text-gray-300 hover:underline" onClick={scrollToTop}>
           Privacy Policy
         </Link>{" "}
