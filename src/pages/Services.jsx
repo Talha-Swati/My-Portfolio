@@ -34,6 +34,18 @@ const Services = () => {
                 "Performance Optimization",
             ],
         },
+         {
+            title: "WordPress Development",
+            icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
+            description:
+                "Tailored WordPress solutions — fast, secure, and flexible to meet your business needs.",
+            includes: [
+                "Theme Customization",
+                "Plugin Integration",
+                "SEO-Friendly Setup",
+                "Maintenance & Support",
+            ],
+        },
         {
             title: "UI/UX Designing",
             icon: <FaPaintBrush className="text-5xl text-cyan-400 mb-5 self-center" />,
@@ -56,18 +68,6 @@ const Services = () => {
                 "Content Marketing",
                 "SEO & Analytics",
                 "Paid Campaigns",
-            ],
-        },
-        {
-            title: "WordPress Development",
-            icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Tailored WordPress solutions — fast, secure, and flexible to meet your business needs.",
-            includes: [
-                "Theme Customization",
-                "Plugin Integration",
-                "SEO-Friendly Setup",
-                "Maintenance & Support",
             ],
         },
         {

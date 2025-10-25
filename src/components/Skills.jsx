@@ -33,7 +33,7 @@ const Skills = () => {
           <motion.div
             key={index}
             whileHover={{ scale: 1.05 }}
-            className="relative bg-white/7 backdrop-blur-lg 
+            className="relative bg-black backdrop-blur-lg 
              p-4 sm:p-6  /* 🔹 smaller padding on mobile */
              rounded-xl sm:rounded-2xl shadow-lg border border-white/20 
              w-full max-w-sm /* 🔹 wider cards for mobile */
@@ -44,7 +44,7 @@ const Skills = () => {
               <h3 className="text-lg sm:text-xl font-semibold">{skill.name}</h3>
             </div>
 
-            <div className="w-full bg-gray-400/70 rounded-full h-2 sm:h-3">
+            <div className="w-full bg-gray-600/70 rounded-full h-2 sm:h-3">
               <motion.div
                 className="bg-gradient-to-r from-teal-400 to-cyan-500 h-2 sm:h-3 rounded-full"
                 initial={{ width: 0 }}

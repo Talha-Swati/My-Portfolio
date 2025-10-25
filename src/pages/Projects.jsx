@@ -32,6 +32,15 @@ const projects = [
     live: "https://aviation.at-drone.com/",
     images: [aviation1, aviation2, aviation3], // you can add screenshots here later like teachgen1, teachgen2, etc.
   },
+   {
+    title: "Smart Task Planner",
+    description:
+      "A full-stack task management system with authentication, priority handling, task categories, and dark/light mode support.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
+    github: "https://github.com/Talha-Swati/Smart-Task-Planner.git",
+    video: "https://drive.google.com/file/d/1Aeg4aylhvSncey5XuIIA-7MPKxisDQ6r/preview",
+    images: [stp1, stp2, stp3],
+  },
   {
 
     title: "TeachGen LMS",
@@ -41,15 +50,7 @@ const projects = [
     live: "https://teachgen.free.nf/",
     images: [courses, lms1, dashboard], // you can add screenshots here later like teachgen1, teachgen2, etc.
   },
-  {
-    title: "Smart Task Planner",
-    description:
-      "A full-stack task management system with authentication, priority handling, task categories, and dark/light mode support.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
-    github: "https://github.com/Talha-Swati/Smart-Task-Planner.git",
-    video: "https://drive.google.com/file/d/1Aeg4aylhvSncey5XuIIA-7MPKxisDQ6r/preview",
-    images: [stp1, stp2, stp3],
-  },
+ 
   {
     title: "HQSR - Holy Quran Speech Recognition",
     description:
