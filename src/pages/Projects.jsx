@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import hqsr1 from "../assets/hqsr1.webp";
@@ -15,69 +14,78 @@ import SkyPulse3 from "../assets/SkyPulse3.png";
 import courses from "../assets/courses.png"
 import lms1 from "../assets/lms1.png"
 import dashboard from "../assets/dashboard.png"
-import coverImg from "../assets/projects.jpg"; // <-- cover image
+import coverImg from "../assets/projects.jpg";
 
 
-const projects = [
-  {
-    title: "TeachGen LMS",
-    description:
-      "TeachGen LMS is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking. The project showcases a professional LMS solution that is both scalable and user-friendly.",
-    tech: ["WordPress", "Astra Theme", "Tutor LMS", "PHP", "MySQL"],
-    live: "https://teachgen.free.nf/",
-    images: [courses, lms1, dashboard], // you can add screenshots here later like teachgen1, teachgen2, etc.
-  },
-  {
-    title: "Smart Task Planner",
-    description:
-      "A full-stack task management system with authentication, priority handling, task categories, and dark/light mode support.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
-    github: "https://github.com/Talha-Swati/Smart-Task-Planner.git",
-    video: "https://drive.google.com/file/d/1Aeg4aylhvSncey5XuIIA-7MPKxisDQ6r/preview",
-    images: [stp1, stp2, stp3],
-  },
-  {
-    title: "HQSR - Holy Quran Speech Recognition",
-    description:
-      "Deep Learning based project using LSTM model for Quran recitation recognition. Achieved an F1 score of 97.6% using custom dataset, preprocessing, augmentation, and librosa features.",
-    tech: ["Python", "Librosa", "LSTM", "TensorFlow", "Custom Dataset"],
-    github: "https://github.com/Talha-Swati/HQSR.git",
-    video: "https://drive.google.com/file/d/1P-6rImzL2Nk3D9RVogXpboHotFmSBwHr/preview",
-    images: [hqsr1, hqsr2, hqsrmain],
-  },
-  {
-    title: "SkyPulse",
-    description:
-      "SkyPulse is a modern weather forecasting web app designed with an intuitive UI and real-time API integration. It features a 'Use My Location' button to instantly fetch the user’s local weather, an hourly chart for precise forecasts, elegant 5-day forecast cards, and a unit toggle to seamlessly switch between Celsius and Fahrenheit. The background dynamically adapts its gradient colors based on live weather conditions—for example, a light bluish gradient for clear skies or gray tones for rainy weather—delivering both functionality and aesthetic appeal.",
-    tech: ["React.js", "Node.js", "Weather API", "TailwindCSS"],
-    github: "https://github.com/Talha-Swati/SkyPulse.git",
-    live: "https://sky-pulse-five.vercel.app/",
-    images: [SkyPulse1, SkyPulse2, SkyPulse3],
-  },
-];
+const projectData = {
+  "Full-Stack": [
+    {
+      title: "TeachGen LMS",
+      description:
+        "TeachGen LMS is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking.",
+      tech: ["WordPress", "Astra Theme", "Tutor LMS", "PHP", "MySQL"],
+      live: "https://teachgen.free.nf/",
+      images: [courses, lms1, dashboard],
+      category: "Web Application",
+    },
+    {
+      title: "Smart Task Planner",
+      description:
+        "A full-stack task management system with authentication, priority handling, task categories, and dark/light mode support. Built with MERN stack providing seamless user experience and efficient task organization.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
+      video: "https://drive.google.com/file/d/1Aeg4aylhvSncey5XuIIA-7MPKxisDQ6r/preview",
+      images: [stp1, stp2, stp3],
+      category: "MERN Application",
+    },
+    {
+      title: "SkyPulse",
+      description:
+        "SkyPulse is a modern weather forecasting web app with real-time API integration, 'Use My Location' feature, hourly charts, 5-day forecast cards, and unit toggle. The background dynamically adapts gradient colors based on live weather conditions for both functionality and aesthetic appeal.",
+      tech: ["React.js", "Node.js", "Weather API", "TailwindCSS"],
+      live: "https://sky-pulse-five.vercel.app/",
+      images: [SkyPulse1, SkyPulse2, SkyPulse3],
+      category: "Web Application",
+    },
+  ],
+  "AI & ML": [
+    {
+      title: "HQSR - Holy Quran Speech Recognition",
+      description:
+        "Deep Learning based project using LSTM model for Quran recitation recognition. Achieved an F1 score of 97.6% using custom dataset, preprocessing, augmentation, and librosa features. Demonstrates advanced machine learning techniques for audio processing.",
+      tech: ["Python", "Librosa", "LSTM", "TensorFlow", "Custom Dataset"],
+      video: "https://drive.google.com/file/d/1P-6rImzL2Nk3D9RVogXpboHotFmSBwHr/preview",
+      images: [hqsr1, hqsr2, hqsrmain],
+      category: "Machine Learning",
+    },
+  ],
+};
+
+// Combine all projects for "All Projects" tab
+projectData["All Projects"] = [...projectData["Full-Stack"], ...projectData["AI & ML"]];
 
 const Projects = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [activeTab, setActiveTab] = useState("All Projects");
+
+  const tabs = ["All Projects", "Full-Stack", "AI & ML"];
+  const currentProjects = projectData[activeTab] || [];
 
   return (
-    <div className="relative min-h-screen text-white overflow-hidden">
+    <div className="relative min-h-screen text-white overflow-hidden bg-[#0a0a0a]">
       <Navbar />
       
-       {/* --- COVER / HERO IMAGE (below navbar) --- */}
+      {/* Cover / Hero Image */}
       <section className="relative text-white overflow-hidden">
-        {/* ↓ reduced heights */}
         <div className="relative h-[220px] sm:h-[320px] md:h-[300px]">
-       <img
-        src={coverImg}
-        alt="About cover"
-        className="absolute inset-0 w-full h-full object-cover object-[center_34%]"
-      />
-      
-          {/* overlay for readability */}
+          <img
+            src={coverImg}
+            alt="Projects cover"
+            className="absolute inset-0 w-full h-full object-cover object-[center_34%]"
+          />
+          
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90" />
       
-          {/* centered heading + paragraph */}
           <div className="relative z-10 h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-4">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -85,117 +93,146 @@ const Projects = () => {
               transition={{ duration: 0.7 }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
             >
-             My Projects
+              My Projects
             </motion.h2>
-                 {/* Section Caption */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto mt-4 mb-12 sm:mb-16"
-        >
-          A curated collection of my development journey — blending creativity,
-          design, and functionality into real-world applications. Each project
-          reflects problem-solving, clean code, and modern UI/UX practices.
-        </motion.p>
-      
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-center text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto"
+            >
+              A curated collection of my development journey — blending creativity,
+              design, and functionality into real-world applications. Each project
+              reflects problem-solving, clean code, and modern UI/UX practices.
+            </motion.p>
           </div>
         </div>
       </section>
-      {/* --- END COVER --- */}
-      
+
+      {/* Tabs Navigation */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="flex flex-wrap gap-3 justify-center mb-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${
+                activeTab === tab
+                  ? "bg-gradient-to-r from-cyan-500 to-teal-500 text-white shadow-lg shadow-cyan-500/50"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Projects Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-
-        <div className="space-y-12 sm:space-y-16">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-teal-500/30 transition-all"
-            >
-              <div
-                className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-12 sm:space-y-16"
+          >
+            {currentProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-black rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-gray-800 hover:border-cyan-500/50 hover:shadow-cyan-500/30 transition-all relative"
               >
-                {/* Project Images */}
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-                  {project.images.map((img, i) => (
-                    <motion.div
-                      key={i}
-                      className="relative h-40 sm:h-48 bg-gray-800 rounded-xl overflow-hidden shadow-md group cursor-pointer"
-                      onClick={() => setSelectedImage(img)}
-                    >
-                      <motion.img
-                        src={img}
-                        alt={`${project.title} preview ${i + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </motion.div>
-                  ))}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+                
+                {/* Category Badge */}
+                <div className="absolute top-6 right-6 sm:top-8 sm:right-8">
+                  <span className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    {project.category}
+                  </span>
                 </div>
 
-                {/* Project Content */}
-                <div className="flex-1 w-full">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                    {project.tech.map((tech, i) => (
-                      <span
+                <div
+                  className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Project Images */}
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+                    {project.images.map((img, i) => (
+                      <motion.div
                         key={i}
-                        className="px-3 py-1 text-xs sm:text-sm rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                        className="relative h-40 sm:h-48 bg-gray-800 rounded-xl overflow-hidden shadow-md group cursor-pointer"
+                        onClick={() => setSelectedImage(img)}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        {tech}
-                      </span>
+                        <motion.img
+                          src={img}
+                          alt={`${project.title} preview ${i + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
+                          <span className="text-white text-sm font-semibold">Click to expand</span>
+                        </div>
+                      </motion.div>
                     ))}
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap gap-3">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-black/40 px-4 py-2 text-white rounded-lg text-xs sm:text-sm hover:shadow-cyan-500/20 transition-all"
-                      >
-                        <FaGithub /> Code
-                      </a>
-                    )}
-                    {project.video && (
-                      <button
-                        onClick={() => setSelectedVideo(project.video)}
-                        className="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-lg text-xs sm:text-sm hover:shadow-cyan-500/20 transition-all"
-                      >
-                        🎥 Demo
-                      </button>
-                    )}
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-lg text-xs sm:text-sm hover:shadow-cyan-500/20 transition-all"
-                      >
-                        🔗 Live
-                      </a>
-                    )}
+                  {/* Project Content */}
+                  <div className="flex-1 w-full">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 text-xs sm:text-sm rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-3">
+                      {project.video && (
+                        <button
+                          onClick={() => setSelectedVideo(project.video)}
+                          className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all shadow-lg hover:shadow-cyan-500/50"
+                        >
+                          🎥 Watch Demo
+                        </button>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all shadow-lg hover:shadow-amber-500/50"
+                        >
+                          🔗 View Live
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Image Modal */}
@@ -228,7 +265,7 @@ const Projects = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
             className="w-full sm:w-[90%] max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()} // prevent closing on video click
+            onClick={(e) => e.stopPropagation()}
           >
             <iframe
               src={selectedVideo}

@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import CvModal from "./CvModal";
-import logo from "../assets/logo.png"; // ✅ Import your logo
+import logo from "../assets/logo1.png"; // ✅ Import your logo
 
 const Navbar = () => {
-  const [isCvOpen, setIsCvOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animateOnce, setAnimateOnce] = useState(true);
   const menuRef = useRef(null);
@@ -34,7 +32,8 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="p-4 bg-black border-3  border-white/10 text-lg shadow-md sticky top-0 z-50 flex items-center justify-between">
+      <nav className="p-4 bg-black border-b border-gray-900 text-lg shadow-2xl sticky top-0 z-50 flex items-center justify-between relative">
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
        {/* Logo (fixed height, zoomed inside, minimal hover) */}
 <Link to="/" className="flex items-center ml-6"> {/* margin from left */}
   <div className="relative h-12 w-45 overflow-hidden flex items-center">
@@ -54,12 +53,12 @@ const Navbar = () => {
             <li key={item} className="relative group">
               <Link
                 to={`/${item.toLowerCase() === "home" ? "" : item.toLowerCase()}`}
-                className="relative font-[Poppins] tracking-wide text-gray-300 transition-all duration-300"
+                className="relative font-[Poppins] tracking-wide text-gray-300 hover:text-cyan-400 transition-all duration-300"
               >
                 {item}
                 {/* Underline animation */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-cyan-400 transition-all duration-500 ${
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-gradient-to-r from-cyan-400 to-teal-400 shadow-lg shadow-cyan-500/50 transition-all duration-500 ${
                     animateOnce ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                   style={{
@@ -69,18 +68,6 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-
-          {/* View CV Button */}
-          <li>
-            <button
-              onClick={() => setIsCvOpen(true)}
-              className="relative px-5 py-2 overflow-hidden font-semibold rounded-xl text-lime-600 border-2 border-lime-500
-                        hover:text-white hover:border-lime-600 transition-colors duration-300 group"
-            >
-              <span className="absolute inset-0 bg-lime-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out"></span>
-              <span className="relative z-10 cursor-pointer">View CV</span>
-            </button>
-          </li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -104,8 +91,8 @@ const Navbar = () => {
       {/* Mobile Dropdown Menu */}
       <div
         ref={menuRef}
-        className={`absolute top-16 right-4 w-56 bg-black backdrop-blur-md text-gray-200 
-        px-6 py-6 space-y-6 z-50 shadow-2xl rounded-xl border border-gray-700
+        className={`absolute top-16 right-4 w-56 bg-black text-gray-200 
+        px-6 py-6 space-y-6 z-50 shadow-2xl rounded-xl border-2 border-gray-800
         transform transition-all duration-500 ease-in-out
         ${
           isMenuOpen
@@ -125,23 +112,7 @@ const Navbar = () => {
             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-teal-400 transition-all duration-500 group-hover:w-full"></span>
           </Link>
         ))}
-
-        {/* Mobile CV Button */}
-        <button
-          onClick={() => {
-            setIsCvOpen(true);
-            setIsMenuOpen(false);
-          }}
-          className="relative px-5 py-2 overflow-hidden font-semibold rounded-xl text-lime-600 border-2 border-lime-500
-            hover:text-white hover:border-lime-600 transition-colors duration-300 group"
-        >
-          <span className="absolute inset-0 bg-lime-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out"></span>
-          <span className="relative z-10 cursor-pointer">View CV</span>
-        </button>
       </div>
-
-      {/* CV Modal */}
-      <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
     </header>
   );
 };

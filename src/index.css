@@ -1,76 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;700&display=swap');
 
 :root {
-  background: linear-gradient(-45deg, #060b22, #092030, #02181b, #10031f);
-  background-size: 400% 400%;
-  animation: galaxy 18s ease infinite;
-  min-height: 100vh;   /* ensures height but doesn't block scrolling */
+  min-height: 100vh;
+  background: #000000;
 }
 
 body {
   margin: 0;
+  padding: 0;
   min-height: 100vh;
-  overflow-y: auto;   /* force vertical scrollbar to work */
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000000;
 }
-
-/* Bubble effect */
-.bubble {
-  position: fixed;
-  bottom: -100px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: rise 20s linear infinite;
-  z-index: -1; /* stays behind content */
-}
-
-/* Different speeds & positions for multiple bubbles */
-.bubble:nth-child(1) {
-  left: 10%;
-  animation-duration: 25s;
-  width: 50px;
-  height: 50px;
-}
-.bubble:nth-child(2) {
-  left: 30%;
-  animation-duration: 18s;
-}
-.bubble:nth-child(3) {
-  left: 50%;
-  animation-duration: 22s;
-  width: 60px;
-  height: 60px;
-}
-.bubble:nth-child(4) {
-  left: 70%;
-  animation-duration: 26s;
-}
-.bubble:nth-child(5) {
-  left: 90%;
-  animation-duration: 20s;
-  width: 45px;
-  height: 45px;
-}
-
-@keyframes rise {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-120vh) scale(1.3);
-    opacity: 0;
-  }
-}
-
-/* Background gradient animation */
-@keyframes galaxy {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
 
  /* other code than bg animations  */
 @keyframes gradientBG {
@@ -128,4 +70,47 @@ html {
   width: 50px;
   height: 50px;
   background: rgba(245, 158, 11, 0.3);
+}
+
+/* Flip Card Animation */
+.flip-card-container {
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flip-card-container:hover .flip-card-inner {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  z-index: 1;
 }

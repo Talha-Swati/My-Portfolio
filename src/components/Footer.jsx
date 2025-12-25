@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -9,10 +9,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative mt-10 text-white overflow-hidden font-[Poppins] w-full">
-      <div className="absolute inset-0 bg-black opacity-90 border border-white/10"></div>
+    <footer className="relative mt-10 text-white overflow-hidden font-[Poppins] w-full bg-black">
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+      <div className="absolute inset-0 bg-black border-t border-gray-900"></div>
 
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-10 flex flex-col sm:flex-row gap-6 sm:gap-10 text-center sm:text-left">
+      <div className="relative z-10 w-full px-6 sm:px-8 lg:px-12 py-10 flex flex-col sm:flex-row gap-6 sm:gap-10 text-center sm:text-left">
         {/* Brand / About */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,12 +23,12 @@ const Footer = () => {
         >
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-wide mb-4 
             bg-gradient-to-r from-cyan-500 to-teal-300 text-transparent bg-clip-text text-center sm:text-left">
-            My Portfolio
+            Talha Riaz
           </h2>
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-md mx-auto sm:mx-0">
-            Delivering <span className="text-teal-400 font-semibold">Web Development</span>,
+            Full-Stack Developer specializing in <span className="text-teal-400 font-semibold">Web Development</span>,
             <span className="text-teal-400 font-semibold"> WordPress Solutions</span>, and
-            <span className="text-teal-400 font-semibold"> SEO/Digital Marketing</span> services tailored to grow your brand online.
+            <span className="text-teal-400 font-semibold"> Digital Marketing</span>. Building scalable, user-focused applications that drive results.
           </p>
         </motion.div>
 
@@ -75,11 +76,10 @@ const Footer = () => {
         >
           <h3 className="text-xl sm:text-2xl font-extrabold tracking-wide mb-2 sm:mb-4 
             bg-gradient-to-r from-cyan-500 to-teal-300 text-transparent bg-clip-text text-center sm:text-right">
-            Follow Me
+            Connect With Me
           </h3>
           <div className="flex space-x-4 sm:space-x-6 py-2 sm:py-5">
             {[
-              { icon: <FaGithub />, link: "https://github.com/Talha-Swati" },
               { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/talha-riaz-swati/" },
               { icon: <FaInstagram />, link: "https://instagram.com/talha_riaz_swati" },
             ].map((social, i) => (
@@ -101,7 +101,7 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="relative z-10 border-t border-gray-600 text-center py-2 sm:py-4 text-xs sm:text-sm text-gray-300 w-full">
-        © {new Date().getFullYear()} My Portfolio. All rights reserved. |{" "}
+        © {new Date().getFullYear()} Talha Riaz. All rights reserved. |{" "}
         <Link to="/privacy-policy" className="text-gray-300 hover:underline" onClick={scrollToTop}>
           Privacy Policy
         </Link>{" "}

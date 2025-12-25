@@ -131,9 +131,10 @@ const About = () => {
 
 
 
-      <div className="relative min-h-screen text-white overflow-hidden">
+      <div className="relative min-h-screen text-white overflow-hidden bg-[#0a0a0a]">
         {/* About Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
          
 
           {/* Animated Counters */}
@@ -172,8 +173,9 @@ const About = () => {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-cyan-500/30 transition-all"
+              className="bg-black rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-gray-800 hover:border-cyan-500/50 hover:shadow-cyan-500/30 transition-all relative"
             >
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
               <h3 className="text-xl sm:text-2xl font-semibold text-cyan-400 mb-3">
                 🚀 Mission
               </h3>
@@ -187,8 +189,9 @@ const About = () => {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-teal-500/30 transition-all"
+              className="bg-black rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-gray-800 hover:border-teal-500/50 hover:shadow-teal-500/30 transition-all relative"
             >
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
               <h3 className="text-xl sm:text-2xl font-semibold text-teal-400 mb-3">
                 🎯 Vision
               </h3>
@@ -204,15 +207,17 @@ const About = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-black/60 backdrop-blur-lg rounded-2xl p-6 sm:p-10 shadow-lg hover:shadow-teal-500/30 transition-all"
+            className="bg-[#171717] rounded-2xl p-6 sm:p-10 shadow-lg border-2 border-gray-800 hover:shadow-teal-500/30 transition-all relative"
           >
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
             <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500">
               🎓 Education & Certifications
             </h3>
 
             <div className="space-y-6">
               {/* Degree */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black/40 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 transition-all">
+              <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black border border-gray-800 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 hover:border-cyan-500/50 transition-all">
                 <FaGraduationCap className="text-cyan-400 text-2xl mb-2 sm:mb-0 sm:mr-3" />
                 <p className="text-sm sm:text-base md:text-lg text-gray-300">
                   Completed <span className="text-teal-400 font-semibold">Bachelor's of Science in Computer Science</span> from NUML University Islamabad, Pakistan.
@@ -223,7 +228,7 @@ const About = () => {
               {certifications.map((cert, i) => (
                 <div
                   key={i}
-                  className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black/40 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 transition-all"
+                  className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left bg-black border border-gray-800 p-4 rounded-xl shadow-md hover:shadow-cyan-500/20 hover:border-cyan-500/50 transition-all"
                 >
                   <div className="mb-2 sm:mb-0 sm:mr-3 flex justify-center">{cert.icon}</div>
                   <p className="text-sm sm:text-base md:text-lg text-gray-300">

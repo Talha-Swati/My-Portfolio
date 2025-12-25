@@ -1,10 +1,9 @@
-// Components/Services.jsx
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import {
-    FaCode, FaPaintBrush, FaBullhorn, FaWordpress, FaComments, FaCheckCircle
+    FaCode, FaPaintBrush, FaBullhorn, FaWordpress, FaComments, FaCheckCircle, FaRobot, FaPython
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -23,15 +22,51 @@ const Services = () => {
 
     const services = [
         {
-            title: "Web Development",
+            title: "Full-Stack Development",
             icon: <FaCode className="text-5xl text-cyan-400 mb-5 self-center" />,
             description:
-                "High-performance, scalable websites that drive conversions and elevate your brand presence.",
+                "High-performance, scalable web applications using React.js, Node.js, and MongoDB for modern digital solutions.",
             includes: [
-                "Custom Development",
-                "E-Commerce Solutions",
-                "CMS Integration",
-                "Performance Optimization",
+                "MERN Stack Development",
+                "RESTful API Development",
+                "Database Design & Optimization",
+                "Cloud Deployment & Hosting",
+            ],
+        },
+        {
+            title: "Automation & AI Solutions",
+            icon: <FaRobot className="text-5xl text-cyan-400 mb-5 self-center" />,
+            description:
+                "Intelligent automation solutions using Python, n8n, and AI/ML technologies to streamline your business processes.",
+            includes: [
+                "n8n Workflow Automation",
+                "Python Scripting & Bots",
+                "Web Scraping Solutions",
+                "LSTM & ML Model Development",
+            ],
+        },
+        {
+            title: "Digital Marketing",
+            icon: <FaBullhorn className="text-5xl text-cyan-400 mb-5 self-center" />,
+            description:
+                "Data-driven strategies to grow your online presence and amplify brand recognition with measurable results.",
+            includes: [
+                "Social Media Marketing",
+                "Content Marketing",
+                "SEO & Analytics",
+                "Paid Campaigns (Google Ads, Meta)",
+            ],
+        },
+        {
+            title: "WordPress Development",
+            icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
+            description:
+                "Tailored WordPress solutions — fast, secure, and flexible to meet your business needs.",
+            includes: [
+                "Theme Customization",
+                "Plugin Development",
+                "SEO-Friendly Setup",
+                "WooCommerce Integration",
             ],
         },
         {
@@ -47,50 +82,27 @@ const Services = () => {
             ],
         },
         {
-            title: "Digital Marketing",
-            icon: <FaBullhorn className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Data-driven strategies to grow your online presence and amplify brand recognition.",
-            includes: [
-                "Social Media Marketing",
-                "Content Marketing",
-                "SEO & Analytics",
-                "Paid Campaigns",
-            ],
-        },
-        {
-            title: "WordPress Development",
-            icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Tailored WordPress solutions — fast, secure, and flexible to meet your business needs.",
-            includes: [
-                "Theme Customization",
-                "Plugin Integration",
-                "SEO-Friendly Setup",
-                "Maintenance & Support",
-            ],
-        },
-        {
-            title: "Consultation",
+            title: "IT Consultation",
             icon: <FaComments className="text-5xl text-cyan-400 mb-5 self-center" />,
             description:
-                "Expert insights for process improvement, technology adoption, and digital strategy.",
+                "Expert insights for process improvement, technology adoption, and digital strategy for remote teams.",
             includes: [
-                "Business Process Improvement",
-                "Technology Strategy",
-                "Project Roadmaps",
-                "Ongoing Support",
+                "Business Process Automation",
+                "Technology Stack Planning",
+                "Project Architecture & Roadmaps",
+                "Remote Team Solutions",
             ],
         },
     ];
 
     return (
-        <div className="text-white min-h-screen flex flex-col bg-transparent">
+        <div className="text-white min-h-screen flex flex-col bg-[#0a0a0a]">
             {/* Navbar */}
             <Navbar />
 
             {/* CTA Section */}
-            <section className="py-12 px-6 text-center">
+            <section className="py-12 px-6 text-center bg-gradient-to-b from-[#1a2332] to-[#0a0a0a] relative">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -120,16 +132,17 @@ const Services = () => {
                         <motion.div
                             key={index}
                             variants={fadeUp}
-                            initial={{ boxShadow: "none" }}   // 🔹 ensures no shadow at start
+                            initial={{ boxShadow: "none" }}
                             whileHover={{
                                 scale: 1.05,
                                 boxShadow: "0px 8px 20px rgba(34,211,238,0.35), 0px 6px 12px rgba(34,211,238,0.2)"
                             }}
                             className="p-6 md:p-8 rounded-2xl 
-                bg-black/40 
-             hover:border border-cyan-800 transition-all duration-300 flex flex-col  
-               font-bold"
+                bg-black border-2 border-gray-800
+             hover:border-cyan-500/50 transition-all duration-300 flex flex-col  
+               font-bold relative"
                         >
+                            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
                             {service.icon}
                             <h3 className="text-xl md:text-2xl font-extrabold mb-3 text-teal-400">
                                 {service.title}
