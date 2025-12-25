@@ -20,11 +20,11 @@ import coverImg from "../assets/projects.jpg";
 const projectData = {
   "Full-Stack": [
     {
-      title: "TeachGen LMS",
+      title: "Aviation Training LMS",
       description:
-        "TeachGen LMS is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking.",
+        "Aviation Training is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking.",
       tech: ["WordPress", "Astra Theme", "Tutor LMS", "PHP", "MySQL"],
-      live: "https://teachgen.free.nf/",
+      live: "https://aviation.at-drone.com/",
       images: [courses, lms1, dashboard],
       category: "Web Application",
     },

@@ -171,7 +171,7 @@ const Bio = () => {
               >
                 <Link
                   to="/projects"
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-blue-400/30"
+                  className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-cyan-400/30"
                 >
                   View My Work
                 </Link>
@@ -186,7 +186,7 @@ const Bio = () => {
               >
                 <Link
                   to="/contact"
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-amber-400/30"
+                  className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-cyan-400/30"
                 >
                   📩 Get in Touch
                 </Link>

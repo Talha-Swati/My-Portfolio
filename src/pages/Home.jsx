@@ -70,7 +70,7 @@ const Home = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex justify-center pt-4 pb-2 relative bg-black"
+        className="flex justify-center pt-4 pb-2 relative bg-[#0a0a0a]"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -234,53 +234,59 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="flip-card-container h-80"
-                  style={{ perspective: '1500px' }}
+                  className="h-80 flip-card-container"
+                  style={{ perspective: '2000px' }}
                 >
                   <div className="flip-card-inner">
-                    {/* Front Face */}
+                    {/* ========== FRONT FACE ========== */}
                     <div className="flip-card-front">
+                      {/* Background Layer (at Z-depth 0) */}
                       <div 
-                        className="w-full h-full bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-8 flex flex-col items-center justify-center"
+                        className="absolute inset-0 w-full h-full rounded-2xl bg-[#0a0a0a] border border-cyan-500/30 shadow-lg"
                         style={{ transform: 'translateZ(0px)' }}
+                      />
+                      
+                      {/* Content Layer (floating at Z-depth 40px) */}
+                      <div 
+                        className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6"
+                        style={{ transform: 'translateZ(40px)' }}
                       >
-                        <div 
-                          className="w-20 h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400"
-                          style={{ transform: 'translateZ(40px)' }}
-                        >
+                        <div className="w-20 h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400">
                           {service.icon}
                         </div>
-                        <h3 
-                          className="text-xl font-bold text-white text-center"
-                          style={{ transform: 'translateZ(40px)' }}
-                        >
+                        <h3 className="text-xl font-bold text-center text-white">
                           {service.title}
                         </h3>
                       </div>
                     </div>
 
-                    {/* Back Face */}
+                    {/* ========== BACK FACE ========== */}
                     <div className="flip-card-back">
-                      <div className="w-full h-full bg-gradient-to-br from-[#0f1419] to-[#1a252f] border border-cyan-500/40 rounded-2xl p-6 flex flex-col items-center justify-center">
-                        <div className="text-cyan-400 mb-3">
+                      {/* Background Layer (at Z-depth 0) */}
+                      <div 
+                        className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-[#0f1419] to-[#1a252f] border border-cyan-500/40 shadow-lg"
+                        style={{ transform: 'translateZ(0px)' }}
+                      />
+                      
+                      {/* Content Layer (floating at Z-depth 40px) */}
+                      <div 
+                        className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6"
+                        style={{ transform: 'translateZ(40px)' }}
+                      >
+                        <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mb-4 text-cyan-400">
                           {service.icon}
                         </div>
-                        <h3 className="text-lg font-bold text-white mb-3 text-center">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-300 text-sm text-center leading-relaxed mb-4">
+                        <p className="text-white text-center text-sm leading-relaxed mb-4">
                           {service.description}
                         </p>
-                        <div className="w-full border-t border-cyan-500/20 pt-3">
-                          <ul className="space-y-1.5">
-                            {service.points.map((point, i) => (
-                              <li key={i} className="flex items-center gap-2 text-cyan-300 text-xs">
-                                <FaCheckCircle className="text-cyan-400 flex-shrink-0" />
-                                <span>{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                        <ul className="space-y-2">
+                          {service.points.map((point, i) => (
+                            <li key={i} className="flex items-center gap-2 text-cyan-300 text-xs">
+                              <FaCheckCircle className="text-cyan-400 flex-shrink-0" />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
