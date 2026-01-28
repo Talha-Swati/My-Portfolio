@@ -40,24 +40,24 @@ const featuredProjects = [
 ];
 
 const services = [
-  {
-    icon: <FaCode className="text-4xl" />,
+    {
+      icon: <FaCode className="text-3xl sm:text-4xl" />,
     title: "Full-Stack Development",
     points: ["MERN Stack Apps", "RESTful APIs", "Cloud Deployment"],
     description:
       "I build scalable, modern web applications using React.js, Node.js, and MongoDB with best practices, ensuring optimal performance, security, and user experience.",
     link: "/services",
   },
-  {
-    icon: <FaLaptopCode className="text-4xl" />,
+    {
+      icon: <FaLaptopCode className="text-3xl sm:text-4xl" />,
     title: "Automation & AI",
     points: ["n8n Workflows", "Python Bots", "Web Scraping"],
     description:
       "I create intelligent automation solutions with n8n, Python, and AI/ML technologies to streamline business processes and increase productivity.",
     link: "/services",
   },
-  {
-    icon: <FaBullhorn className="text-4xl" />,
+    {
+      icon: <FaBullhorn className="text-3xl sm:text-4xl" />,
     title: "Digital Marketing",
     points: ["SEO Optimization", "Social Media", "Google Ads"],
     description:
@@ -237,7 +237,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="h-80 flip-card-container"
+                  className="h-64 sm:h-72 md:h-80 flip-card-container"
                   style={{ perspective: '2000px' }}
                 >
                   <div className="flip-card-inner">
@@ -254,10 +254,10 @@ const Home = () => {
                         className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6"
                         style={{ transform: 'translateZ(40px)' }}
                       >
-                        <div className="w-20 h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400">
                           {service.icon}
                         </div>
-                        <h3 className="text-xl font-semibold text-center text-white">
+                        <h3 className="text-lg sm:text-xl font-semibold text-center text-white">
                           {service.title}
                         </h3>
                       </div>
@@ -276,13 +276,13 @@ const Home = () => {
                         className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6"
                         style={{ transform: 'translateZ(40px)' }}
                       >
-                        <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mb-4 text-cyan-400">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mb-4 text-cyan-400">
                           {service.icon}
                         </div>
-                        <p className="text-white text-center text-sm leading-relaxed mb-4">
+                        <p className="text-white text-center text-sm leading-relaxed mb-3 sm:mb-4">
                           {service.description}
                         </p>
-                        <ul className="space-y-2">
+                        <ul className="space-y-1 sm:space-y-2">
                           {service.points.map((point, i) => (
                             <li key={i} className="flex items-center gap-2 text-cyan-300 text-xs">
                               <FaCheckCircle className="text-cyan-400 flex-shrink-0" />
@@ -312,7 +312,7 @@ const Home = () => {
         </section>
 
         {/* Trusted Affiliations Section - Black */}
-        <section className="bg-black py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-900">
+        <section className="bg-black py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-900">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -339,23 +339,23 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="flex flex-col items-center"
               >
-                <div className="w-40 h-40 mb-6 flex items-center justify-center">
+                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-4 sm:mb-6 flex items-center justify-center">
                   <img 
                     src={dronelogo} 
                     alt="Alpha Tango Drone Services" 
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-6 w-full text-center hover:border-cyan-500/50 transition-all">
-                  <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
+                <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-4 sm:p-6 w-full text-center hover:border-cyan-500/50 transition-all">
+                  <h3 className="text-lg sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
                      ALPHA TANGO
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4">DRONE SERVICES</p>
+                  <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">DRONE SERVICES</p>
                   <a 
                     href="https://at-drone.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-xs sm:text-sm transition-colors"
                   >
                     <FaExternalLinkAlt className="text-xs" />
                     Visit Website
@@ -371,23 +371,23 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col items-center"
               >
-                <div className="w-40 h-40 mb-6 flex items-center justify-center">
+                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-4 sm:mb-6 flex items-center justify-center">
                   <img 
                     src={toda} 
                     alt="Jointoda Truck Owners & Drivers" 
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-6 w-full text-center hover:border-cyan-500/50 transition-all">
-                  <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
+                <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-4 sm:p-6 w-full text-center hover:border-cyan-500/50 transition-all">
+                  <h3 className="text-lg sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
                      JOINTODA
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4">TRUCK OWNERS & DRIVERS</p>
+                  <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">TRUCK OWNERS & DRIVERS</p>
                   <a 
                     href="https://jointoda.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-xs sm:text-sm transition-colors"
                   >
                     <FaExternalLinkAlt className="text-xs" />
                     Visit Website

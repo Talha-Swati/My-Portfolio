@@ -72,6 +72,12 @@ html {
   background: rgba(245, 158, 11, 0.3);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
 /* ========== 3D Flip Card Animation ========== */
 
 /* Container - Sets up 3D perspective */
@@ -137,3 +143,4 @@ html {
   -webkit-backface-visibility: hidden !important;
   -moz-backface-visibility: hidden !important;
 }
+
