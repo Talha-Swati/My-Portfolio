@@ -16,13 +16,13 @@ import dronelogo from "../assets/dronelogo.png";
 import toda from "../assets/toda.png";
 
 const featuredProjects = [
-  {
-    title: "TeachGen LMS",
-    description: "WordPress-based learning management system with complete eLearning functionality",
-    image: lmss1,
-    tech: ["WordPress", "Tutor LMS", "PHP"],
-    link: "/projects",
-  },
+    {
+      title: "Aviation Training LMS",
+      description: "WordPress-based learning management system with complete eLearning functionality",
+      image: lmss1,
+      tech: ["WordPress", "Fox LMS", "PHP"],
+      link: "/projects",
+    },
   {
     title: "Smart Task Planner",
     description: "Full-stack MERN task management with authentication and dark mode",
