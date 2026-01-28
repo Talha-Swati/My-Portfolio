@@ -11,6 +11,40 @@ import {
   FaFileAlt,
 } from "react-icons/fa";
 import coverImg from "../assets/dp3.png"; // <-- cover image
+import SectionHeading from "../components/ui/SectionHeading";
+
+const certifications = [
+  {
+    icon: <FaCertificate className="text-teal-400 text-2xl" />,
+    text: "Introduction to Artificial Intelligence by IBM (Completed May 2024)",
+    url: "https://drive.google.com/file/d/1lRjmIesUmMm4yUkTwUQdA1kwGNU7r9UM/preview",
+  },
+  {
+    icon: <FaCertificate className="text-teal-400 text-2xl" />,
+    text: "Introduction to Web Development with HTML, CSS & JavaScript by IBM (Completed Aug 2023)",
+    url: "https://drive.google.com/file/d/17eblrwEsEMuHC0hC6RnYjFoKNNwxUc_Q/preview",
+  },
+  {
+    icon: <FaCertificate className="text-cyan-400 text-2xl" />,
+    text: "Freelancing by DigiSkills",
+    url: "https://drive.google.com/file/d/1L5PGsoY8zC6vAQRnxTgjkA-mMNoqr6PI/preview",
+  },
+  {
+    icon: <FaCertificate className="text-cyan-400 text-2xl" />,
+    text: "Graphic Design by DigiSkills",
+    url: "https://drive.google.com/file/d/1BRpuZJyBaCiRGB-_PEUacJd5zziRBbLR/preview",
+  },
+  {
+    icon: <FaFileAlt className="text-green-400 text-2xl" />,
+    text: "Internship at Codexcue Tech Sol",
+    url: "https://drive.google.com/file/d/1zMQnubVIJgVIY_vdQyGFi7iVEX8ytchh/preview",
+  },
+  {
+    icon: <FaFileAlt className="text-yellow-400 text-2xl" />,
+    text: "Recommendation Letter from Codexcue Tech Sol",
+    url: "https://drive.google.com/file/d/1nPoiu64Afwon8h4NFCs2YNRvH-IaQxjr/preview",
+  },
+];
 
 // Counter Component
 const Counter = ({ end }) => {
@@ -53,39 +87,6 @@ const About = () => {
     document.body.style.overflow = "auto"; // restore scroll
   };
 
-  const certifications = [
-    {
-      icon: <FaCertificate className="text-teal-400 text-2xl" />,
-      text: "Introduction to Artificial Intelligence by IBM (Completed May 2024)",
-      url: "https://drive.google.com/file/d/1lRjmIesUmMm4yUkTwUQdA1kwGNU7r9UM/preview",
-    },
-    {
-      icon: <FaCertificate className="text-teal-400 text-2xl" />,
-      text: "Introduction to Web Development with HTML, CSS & JavaScript by IBM (Completed Aug 2023)",
-      url: "https://drive.google.com/file/d/17eblrwEsEMuHC0hC6RnYjFoKNNwxUc_Q/preview",
-    },
-    {
-      icon: <FaCertificate className="text-cyan-400 text-2xl" />,
-      text: "Freelancing by DigiSkills",
-      url: "https://drive.google.com/file/d/1L5PGsoY8zC6vAQRnxTgjkA-mMNoqr6PI/preview",
-    },
-    {
-      icon: <FaCertificate className="text-cyan-400 text-2xl" />,
-      text: "Graphic Design by DigiSkills",
-      url: "https://drive.google.com/file/d/1BRpuZJyBaCiRGB-_PEUacJd5zziRBbLR/preview",
-    },
-    {
-      icon: <FaFileAlt className="text-green-400 text-2xl" />,
-      text: "Internship at Codexcue Tech Sol",
-      url: "https://drive.google.com/file/d/1zMQnubVIJgVIY_vdQyGFi7iVEX8ytchh/preview",
-    },
-    {
-      icon: <FaFileAlt className="text-yellow-400 text-2xl" />,
-      text: "Recommendation Letter from Codexcue Tech Sol",
-      url: "https://drive.google.com/file/d/1nPoiu64Afwon8h4NFCs2YNRvH-IaQxjr/preview",
-    },
-  ];
-
   return (
     <>
       <Navbar />
@@ -105,25 +106,22 @@ const About = () => {
 
     {/* centered heading + paragraph */}
     <div className="relative z-10 h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-4">
-      <motion.h2
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
       >
-        About Me
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="text-sm sm:text-base md:text-lg text-gray-200 max-w-3xl"
-      >
-        I’m a passionate developer with expertise in building modern, scalable, and visually stunning web applications.
-        My process starts with understanding the user and ends with measurable results: faster load times,
-        better mobile interactions, and intuitive navigation that visitors love.
-      </motion.p>
+        <SectionHeading
+          title={
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
+              About Me
+            </span>
+          }
+          subtitle="I build modern, scalable, and visually polished web applications. My process starts with understanding the user and ends with measurable results: faster load times, better mobile interactions, and intuitive navigation."
+          titleClassName="text-3xl sm:text-4xl md:text-5xl"
+          subtitleClassName="text-gray-200 text-sm sm:text-base md:text-lg max-w-3xl"
+        />
+      </motion.div>
     </div>
   </div>
 </section>
@@ -158,7 +156,7 @@ const About = () => {
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ duration: 0.6 }}
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-400"
+                  className="text-2xl sm:text-3xl md:text-4xl font-semibold text-teal-400"
                 >
                   <Counter end={item.value} />
                 </motion.h3>
@@ -211,7 +209,7 @@ const About = () => {
           >
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500">
+            <h3 className="text-2xl sm:text-3xl font-semibold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500">
               🎓 Education & Certifications
             </h3>
 

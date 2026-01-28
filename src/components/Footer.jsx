@@ -2,6 +2,27 @@ import React from "react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { navLinks } from "../constants/navLinks";
+import SocialLinks from "./ui/SocialLinks";
+
+const socialLinks = [
+  {
+    key: "linkedin",
+    icon: <FaLinkedin />,
+    link: "https://www.linkedin.com/in/talha-riaz-swati/",
+    Component: motion.a,
+    whileHover: { scale: 1.2, rotate: 5 },
+    whileTap: { scale: 0.9 },
+  },
+  {
+    key: "instagram",
+    icon: <FaInstagram />,
+    link: "https://instagram.com/talha_riaz_swati",
+    Component: motion.a,
+    whileHover: { scale: 1.2, rotate: 5 },
+    whileTap: { scale: 0.9 },
+  },
+];
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -9,7 +30,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative mt-10 text-white overflow-hidden font-[Poppins] w-full bg-black">
+    <footer className="relative mt-10 text-white overflow-hidden font-sans w-full bg-black">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
       <div className="absolute inset-0 bg-black border-t border-gray-900"></div>
 
@@ -21,14 +42,25 @@ const Footer = () => {
           transition={{ duration: 0.6 }}
           className="flex-1"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-wide mb-4 
+          <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
+            <div className="h-12 w-12 rounded-full bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-500 p-[2px]">
+              <div className="h-full w-full rounded-full bg-black flex items-center justify-center">
+                <span className="font-extrabold text-white tracking-tight text-lg">
+                  <span className="text-cyan-300">T</span>
+                  <span className="text-teal-400">R</span>
+                </span>
+              </div>
+            </div>
+            <span className="text-lg font-semibold text-gray-200 tracking-wide">TR</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-wide mb-4 
             bg-gradient-to-r from-cyan-500 to-teal-300 text-transparent bg-clip-text text-center sm:text-left">
             Talha Riaz
           </h2>
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-md mx-auto sm:mx-0">
             Full-Stack Developer specializing in <span className="text-teal-400 font-semibold">Web Development</span>,
             <span className="text-teal-400 font-semibold"> WordPress Solutions</span>, and
-            <span className="text-teal-400 font-semibold"> Digital Marketing</span>. Building scalable, user-focused applications that drive results.
+            <span className="text-teal-400 font-semibold"> Digital Marketing</span>. I build scalable, user-focused applications that drive results.
           </p>
         </motion.div>
 
@@ -39,23 +71,17 @@ const Footer = () => {
           transition={{ duration: 0.7 }}
           className="flex-1 flex flex-col items-center sm:items-center mt-6 sm:mt-0"
         >
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-wide mb-2 sm:mb-4 
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-wide mb-2 sm:mb-4 
             bg-gradient-to-r from-cyan-500 to-teal-300 text-transparent bg-clip-text text-center">
             Quick Links
           </h2>
           <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 font-medium text-center text-sm sm:text-base">
-            {[
-              { name: "Home", to: "/" },
-              { name: "About", to: "/about" },
-              { name: "Projects", to: "/projects" },
-              { name: "Services", to: "/services" },
-              { name: "Contact", to: "/contact" },
-            ].map((link, i) => (
-              <li key={i}>
+            {navLinks.map((link) => (
+              <li key={link.name}>
                 <Link
                   to={link.to}
                   onClick={scrollToTop}
-                  className="relative group transition duration-300"
+                  className="relative group transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60 rounded"
                 >
                   <span className="transition-colors duration-300 text-white/90 group-hover:text-cyan-400">
                     {link.name}
@@ -74,39 +100,25 @@ const Footer = () => {
           transition={{ duration: 0.8 }}
           className="flex-1 flex flex-col items-center sm:items-end mt-6 sm:mt-0"
         >
-          <h3 className="text-xl sm:text-2xl font-extrabold tracking-wide mb-2 sm:mb-4 
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-wide mb-2 sm:mb-4 
             bg-gradient-to-r from-cyan-500 to-teal-300 text-transparent bg-clip-text text-center sm:text-right">
             Connect With Me
           </h3>
-          <div className="flex space-x-4 sm:space-x-6 py-2 sm:py-5">
-            {[
-              { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/talha-riaz-swati/" },
-              { icon: <FaInstagram />, link: "https://instagram.com/talha_riaz_swati" },
-            ].map((social, i) => (
-              <motion.a
-                key={i}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-100 text-xl sm:text-2xl hover:text-cyan-400 transition"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
+          <SocialLinks
+            links={socialLinks}
+            className="space-x-4 sm:space-x-6 py-2 sm:py-5"
+          />
         </motion.div>
       </div>
 
       {/* Bottom Copyright */}
       <div className="relative z-10 border-t border-gray-600 text-center py-2 sm:py-4 text-xs sm:text-sm text-gray-300 w-full">
         © {new Date().getFullYear()} Talha Riaz. All rights reserved. |{" "}
-        <Link to="/privacy-policy" className="text-gray-300 hover:underline" onClick={scrollToTop}>
+        <Link to="/privacy-policy" className="text-gray-300 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60 rounded" onClick={scrollToTop}>
           Privacy Policy
         </Link>{" "}
         |{" "}
-        <Link to="/terms-conditions" className="text-gray-300 hover:underline" onClick={scrollToTop}>
+        <Link to="/terms-conditions" className="text-gray-300 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60 rounded" onClick={scrollToTop}>
           Terms & Conditions
         </Link>
       </div>

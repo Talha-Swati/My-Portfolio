@@ -3,26 +3,27 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { SiReact, SiNodedotjs, SiMongodb, SiPython, SiTailwindcss, SiWordpress } from "react-icons/si";
 import profileImage from "../assets/dp2.jpg";
+import GradientButton from "./ui/GradientButton";
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+  }),
+};
+
+const techStack = [
+  { icon: <SiReact />, name: "React.js", color: "text-cyan-400" },
+  { icon: <SiNodedotjs />, name: "Node.js", color: "text-green-400" },
+  { icon: <SiMongodb />, name: "MongoDB", color: "text-green-500" },
+  { icon: <SiPython />, name: "Python", color: "text-yellow-400" },
+  { icon: <SiTailwindcss />, name: "Tailwind", color: "text-cyan-300" },
+  { icon: <SiWordpress />, name: "WordPress", color: "text-blue-400" },
+];
 
 const Bio = () => {
-
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
-  };
-
-  const techStack = [
-    { icon: <SiReact />, name: "React.js", color: "text-cyan-400" },
-    { icon: <SiNodedotjs />, name: "Node.js", color: "text-green-400" },
-    { icon: <SiMongodb />, name: "MongoDB", color: "text-green-500" },
-    { icon: <SiPython />, name: "Python", color: "text-yellow-400" },
-    { icon: <SiTailwindcss />, name: "Tailwind", color: "text-cyan-300" },
-    { icon: <SiWordpress />, name: "WordPress", color: "text-blue-400" },
-  ];
 
   return (
     <section className="relative py-10 sm:py-16 px-4 sm:px-10 md:px-20 shadow-2xl overflow-hidden w-full bg-[#0a0a0a]">
@@ -46,7 +47,7 @@ const Bio = () => {
                 />
               </div>
               
-              <h3 className="text-2xl font-bold text-center text-white mb-2">
+              <h3 className="text-2xl font-semibold text-center text-white mb-2">
                 Talha Riaz
               </h3>
               <p className="text-cyan-400 text-center mb-4 font-medium">
@@ -98,25 +99,21 @@ const Bio = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4">
               Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300">Talha Riaz</span>
             </h2>
             
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
-              A passionate{" "}
-              <span className="font-semibold text-cyan-400">
-                Full-Stack Developer
-              </span>
-              {" "}specializing in building modern, scalable, and high-performance web
-              applications. With expertise in{" "}
+              I’m a{" "}
+              <span className="font-semibold text-cyan-400">Full-Stack Developer</span>
+              {" "}focused on modern, scalable, and high-performance web applications. With expertise in{" "}
               <span className="text-cyan-400">React.js</span>,{" "}
               <span className="text-cyan-400">Node.js</span>, and{" "}
-              <span className="text-cyan-400">MongoDB</span>, I create
-              user-centered solutions that combine clean code with exceptional user experience.
+              <span className="text-cyan-400">MongoDB</span>, I build user-centered products that pair clean code with great UX.
             </p>
 
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
-              Currently providing services to{" "}
+              I currently work with{" "}
               <span className="text-cyan-400">US-based projects</span>, including a logistics platform for{" "}
               <a href="https://jointoda.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline">
                 Truck Owners and Drivers Association (jointoda.com)
@@ -125,18 +122,16 @@ const Bio = () => {
               <a href="https://at-drone.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline">
                 at-drone.com
               </a>
-              . I'm actively seeking{" "}
+              . I’m actively seeking{" "}
               <span className="font-semibold text-amber-400">remote opportunities</span>
               {" "}for IT solutions, automation, and full-stack development projects.
             </p>
 
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
-              I also bring strong knowledge in{" "}
+              I also bring strong experience in{" "}
               <span className="text-amber-400">Digital Marketing</span>,{" "}
               <span className="text-amber-400">SEO</span>, and{" "}
-              <span className="text-amber-400">WordPress Development</span>,
-              helping businesses establish a strong online presence with optimized,
-              conversion-focused websites.
+              <span className="text-amber-400">WordPress Development</span>, helping businesses build a strong online presence with optimized, conversion-focused websites.
             </p>
 
             {/* Tech Stack Icons */}
@@ -169,12 +164,13 @@ const Bio = () => {
                 animate="visible"
                 whileTap={{ scale: 0.95 }}
               >
-                <Link
+                <GradientButton
+                  as={Link}
                   to="/projects"
-                  className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-cyan-400/30"
+                  className="border border-cyan-400/30 block text-center"
                 >
                   View My Work
-                </Link>
+                </GradientButton>
               </motion.div>
 
               <motion.div
@@ -184,12 +180,13 @@ const Bio = () => {
                 animate="visible"
                 whileTap={{ scale: 0.95 }}
               >
-                <Link
+                <GradientButton
+                  as={Link}
                   to="/contact"
-                  className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold block text-center transition-all duration-300 hover:scale-105 border border-cyan-400/30"
+                  className="border border-cyan-400/30 block text-center"
                 >
                   📩 Get in Touch
-                </Link>
+                </GradientButton>
               </motion.div>
             </div>
           </motion.div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -11,21 +11,35 @@ import stp3 from "../assets/stp3.webp";
 import SkyPulse1 from "../assets/SkyPulse1.png";
 import SkyPulse2 from "../assets/SkyPulse2.png";
 import SkyPulse3 from "../assets/SkyPulse3.png";
-import courses from "../assets/courses.png"
-import lms1 from "../assets/lms1.png"
-import dashboard from "../assets/dashboard.png"
+import at1 from "../assets/at1.png";
+import at2 from "../assets/at2.png";
+import at3 from "../assets/at3.png";
+import lmss1 from "../assets/lmss1.png";
+import lmss2 from "../assets/lmss2.png";
+import lmss3 from "../assets/lmss3.png";
 import coverImg from "../assets/projects.jpg";
+import SectionHeading from "../components/ui/SectionHeading";
+import TechBadge from "../components/ui/TechBadge";
 
 
 const projectData = {
   "Full-Stack": [
     {
+      title: "Alpha Tango Drone Services",
+      description:
+        "A corporate website for Alpha Tango Drone Services showcasing aviation certifications, training, and service offerings with clear navigation and strong calls to action.",
+      tech: ["WordPress", "Elementor", "Custom Styling"],
+      live: "https://at-drone.com/",
+      images: [at1, at2, at3],
+      category: "Business Website",
+    },
+    {
       title: "Aviation Training LMS",
       description:
-        "Aviation Training is a WordPress-based learning management system built using the Astra theme and powered by the Tutor LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking.",
-      tech: ["WordPress", "Astra Theme", "Tutor LMS", "PHP", "MySQL"],
+        "Aviation Training is a WordPress-based learning management system built using the Astra theme and powered by the Fox LMS plugin. It offers modern navigation, a fast and responsive design, and complete eLearning functionality including course creation, quizzes, student dashboards, and progress tracking.",
+      tech: ["WordPress", "Astra Theme", "Fox LMS", "PHP", "MySQL"],
       live: "https://aviation.at-drone.com/",
-      images: [courses, lms1, dashboard],
+      images: [lmss1, lmss2, lmss3],
       category: "Web Application",
     },
     {
@@ -68,6 +82,17 @@ const Projects = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [activeTab, setActiveTab] = useState("All Projects");
 
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedImage(null);
+        setSelectedVideo(null);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const tabs = ["All Projects", "Full-Stack", "AI & ML"];
   const currentProjects = projectData[activeTab] || [];
 
@@ -82,30 +107,32 @@ const Projects = () => {
             src={coverImg}
             alt="Projects cover"
             className="absolute inset-0 w-full h-full object-cover object-[center_34%]"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
           />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90" />
       
           <div className="relative z-10 h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center gap-4">
-            <motion.h2
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500"
             >
-              My Projects
-            </motion.h2>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-center text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto"
-            >
-              A curated collection of my development journey — blending creativity,
-              design, and functionality into real-world applications. Each project
-              reflects problem-solving, clean code, and modern UI/UX practices.
-            </motion.p>
+              <SectionHeading
+                title={
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
+                    My Projects
+                  </span>
+                }
+                subtitle={
+                  "A curated selection of projects that blend design, functionality, and clean code into real-world results."
+                }
+                titleClassName="text-3xl sm:text-4xl md:text-5xl"
+                subtitleClassName="text-gray-300 text-sm sm:text-base md:text-lg max-w-3xl mx-auto"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -168,8 +195,17 @@ const Projects = () => {
                     {project.images.map((img, i) => (
                       <motion.div
                         key={i}
-                        className="relative h-40 sm:h-48 bg-gray-800 rounded-xl overflow-hidden shadow-md group cursor-pointer"
+                        className="relative h-40 sm:h-48 bg-gray-800 rounded-xl overflow-hidden shadow-md group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
                         onClick={() => setSelectedImage(img)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            setSelectedImage(img);
+                          }
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Open ${project.title} preview ${i + 1}`}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -177,6 +213,8 @@ const Projects = () => {
                           src={img}
                           alt={`${project.title} preview ${i + 1}`}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
                           <span className="text-white text-sm font-semibold">Click to expand</span>
@@ -187,7 +225,7 @@ const Projects = () => {
 
                   {/* Project Content */}
                   <div className="flex-1 w-full">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-3 sm:mb-4">
                       {project.title}
                     </h3>
                     <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 leading-relaxed">
@@ -197,12 +235,12 @@ const Projects = () => {
                     {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                       {project.tech.map((tech, i) => (
-                        <span
+                        <TechBadge
                           key={i}
-                          className="px-3 py-1 text-xs sm:text-sm rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                          className="bg-amber-500/10 text-amber-400 border-amber-500/20"
                         >
                           {tech}
-                        </span>
+                        </TechBadge>
                       ))}
                     </div>
 
@@ -249,6 +287,7 @@ const Projects = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
             className="w-full max-w-6xl max-h-[85vh] rounded-lg shadow-2xl object-contain"
+            decoding="async"
           />
         </div>
       )}

@@ -5,6 +5,45 @@ import Footer from "./Footer";
 import { FaArrowLeft, FaUserShield, FaInfoCircle, FaCookieBite, FaLock, FaGavel, FaEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+const policySections = [
+  {
+    title: "Information Collection",
+    icon: <FaInfoCircle className="text-teal-400 text-2xl sm:text-3xl" />,
+    content:
+      "I may collect details like your name, email, and browsing behavior when you interact with forms, contact sections, or subscribe to newsletters. This helps me improve your experience.",
+  },
+  {
+    title: "Use of Information",
+    icon: <FaUserShield className="text-cyan-400 text-2xl sm:text-3xl" />,
+    content:
+      "Collected information is used to respond to inquiries, send updates, and improve website functionality. I never sell or share your personal data without your consent.",
+  },
+  {
+    title: "Cookies & Tracking",
+    icon: <FaCookieBite className="text-yellow-400 text-2xl sm:text-3xl" />,
+    content:
+      "I use cookies and similar technologies to understand visitor behavior, enhance performance, and deliver a personalized experience. Disabling cookies may limit some features.",
+  },
+  {
+    title: "Data Security",
+    icon: <FaLock className="text-indigo-400 text-2xl sm:text-3xl" />,
+    content:
+      "I implement reasonable measures to protect your data from unauthorized access. However, no internet transmission can be guaranteed completely secure.",
+  },
+  {
+    title: "Your Rights",
+    icon: <FaEdit className="text-purple-400 text-2xl sm:text-3xl" />,
+    content:
+      "You can access, modify, or request deletion of your personal data. Contact me via the form on this website to exercise these rights.",
+  },
+  {
+    title: "Changes to Privacy Policy",
+    icon: <FaGavel className="text-red-400 text-2xl sm:text-3xl" />,
+    content:
+      "I may update this Privacy Policy periodically. Changes will be reflected here, so please check this page regularly.",
+  },
+];
+
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
 
@@ -13,45 +52,6 @@ const PrivacyPolicy = () => {
     if (window.history.length > 1) navigate(-1);
     else navigate("/");
   };
-
-  const policySections = [
-    {
-      title: "Information Collection",
-      icon: <FaInfoCircle className="text-teal-400 text-2xl sm:text-3xl" />,
-      content:
-        "We may collect details like your name, email, and browsing behavior when you interact with forms, contact sections, or subscribe to newsletters. This helps us improve your experience.",
-    },
-    {
-      title: "Use of Information",
-      icon: <FaUserShield className="text-cyan-400 text-2xl sm:text-3xl" />,
-      content:
-        "Collected information is used to respond to inquiries, send updates, and improve website functionality. We never sell or share your personal data without your consent.",
-    },
-    {
-      title: "Cookies & Tracking",
-      icon: <FaCookieBite className="text-yellow-400 text-2xl sm:text-3xl" />,
-      content:
-        "We use cookies and similar technologies to understand visitor behavior, enhance performance, and deliver a personalized experience. Disabling cookies may limit some features.",
-    },
-    {
-      title: "Data Security",
-      icon: <FaLock className="text-indigo-400 text-2xl sm:text-3xl" />,
-      content:
-        "We implement reasonable measures to protect your data from unauthorized access. However, no internet transmission can be guaranteed completely secure.",
-    },
-    {
-      title: "Your Rights",
-      icon: <FaEdit className="text-purple-400 text-2xl sm:text-3xl" />,
-      content:
-        "You can access, modify, or request deletion of your personal data. Contact us via the form on this website to exercise these rights.",
-    },
-    {
-      title: "Changes to Privacy Policy",
-      icon: <FaGavel className="text-red-400 text-2xl sm:text-3xl" />,
-      content:
-        "We may update this Privacy Policy periodically. Changes will be reflected here, so please check this page regularly.",
-    },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-transparent text-gray-100 transition-colors duration-500">
@@ -74,7 +74,7 @@ const PrivacyPolicy = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500 leading-tight flex-1"
+            className="text-4xl sm:text-5xl font-semibold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500 leading-tight flex-1"
           >
             Privacy Policy
           </motion.h1>
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <p className="mb-12 text-center text-gray-300 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-          Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you interact with Digital Playground Portfolio.
+          Your privacy is important to me. This Privacy Policy explains how I collect, use, and protect your personal information when you interact with Digital Playground Portfolio.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

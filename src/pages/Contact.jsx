@@ -1,9 +1,30 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaLinkedin } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import SectionHeading from "../components/ui/SectionHeading";
+
+const projectTypes = [
+  { label: "Full-Stack Development", value: "Full-Stack Development" },
+  { label: "AI Integrations", value: "Automation & AI" },
+  { label: "WordPress Development", value: "WordPress Development" },
+  { label: "Digital Marketing", value: "Digital Marketing" },
+  { label: "Web Scraping", value: "Web Scraping" },
+  { label: "UI/UX Design", value: "UI/UX Design" },
+  { label: "IT Consultation", value: "IT Consultation" },
+  { label: "Other", value: "Other" },
+];
+
+const budgetOptions = [
+  "Under $500",
+  "$500 - $1,000",
+  "$1,000 - $3,000",
+  "$3,000 - $5,000",
+  "$5,000+",
+  "Not sure yet",
+];
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -28,25 +49,18 @@ const Contact = () => {
         message: e.target.message.value,
       };
 
-      console.log("Sending email with params:", templateParams);
-
-      const result = await emailjs.send(
+      await emailjs.send(
         "service_hir6x6i",
         "template_gu9gbrb",
         templateParams,
         "NTAXYgwkYqoNSYeG4"
       );
-
-      console.log("Email sent successfully:", result);
       alert("✅ Message sent successfully! I'll get back to you within 4 hours.");
       e.target.reset();
       setSelectedCategory("");
       setSelectedBudget("");
       setClientType("Individual");
     } catch (err) {
-      console.error("EmailJS Error Details:", err);
-      console.error("Error Text:", err.text);
-      console.error("Error Status:", err.status);
       alert("❌ Error: " + (err.text || err.message || "Failed to send message. Please email talhariaz797@gmail.com directly."));
     } finally {
       setLoading(false);
@@ -79,25 +93,24 @@ const Contact = () => {
       {/* Clean CTA Text */}
       <section className="py-12 px-6 text-center bg-gradient-to-b from-[#1a2332] to-[#0a0a0a] relative">
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-3xl md:text-5xl font-bold mb-4"
         >
-          Let's Build Something{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
-            Amazing Together
-          </span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-300"
-        >
-          Whether it's a web app, automation, or AI solution — I'm here to transform your ideas into reality.
-        </motion.p>
+          <SectionHeading
+            title={
+              <>
+                Let's Build Something{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
+                  Amazing Together
+                </span>
+              </>
+            }
+            subtitle="Whether it's a web app, automation, or AI solution, I'm here to transform your ideas into reality."
+            subtitleClassName="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-300"
+          />
+        </motion.div>
       </section>
 
       {/* Contact Section */}
@@ -112,7 +125,7 @@ const Contact = () => {
           <motion.div
             id="contact-form"
             variants={fadeUp}
-            className="bg-[#0f1419] p-6 md:p-8 rounded-3xl shadow-2xl border border-gray-800/50 hover:border-cyan-500/30 transition-all duration-500 relative overflow-hidden"
+            className="bg-black/50 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-2xl border border-white/10 hover:border-cyan-500/30 transition-all duration-500 relative overflow-hidden"
           >
             {/* Decorative gradient overlay */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
@@ -120,10 +133,10 @@ const Contact = () => {
             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-teal-500/5 rounded-full blur-3xl"></div>
             
             <div className="relative z-10">
-              <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 text-3xl md:text-4xl font-bold mb-2 text-center">
-                Send us a Message
+              <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 text-3xl md:text-4xl font-semibold mb-2 text-center">
+                Send me a Message
               </h3>
-              <p className="text-gray-400 text-sm text-center mb-6">Fill out the form and I'll respond within 4 hours</p>
+              <p className="text-gray-400 text-sm text-center mb-6">Share your details and I’ll respond within 4 hours</p>
               
               <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
                 {/* Client Type Toggle */}
@@ -166,7 +179,8 @@ const Contact = () => {
                     type="text"
                     name="user_name"
                     placeholder="John Doe"
-                    className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-gray-600 placeholder:text-gray-500"
+                    autoComplete="name"
+                    className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-white/20 placeholder:text-gray-500"
                     required
                   />
                 </div>
@@ -186,7 +200,8 @@ const Contact = () => {
                       type="text"
                       name="company_name"
                       placeholder="Your Company Name"
-                      className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-gray-600 placeholder:text-gray-500"
+                      autoComplete="organization"
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-white/20 placeholder:text-gray-500"
                       required={clientType === "Company"}
                     />
                   </motion.div>
@@ -202,7 +217,9 @@ const Contact = () => {
                       type="email"
                       name="user_email"
                       placeholder="john@example.com"
-                      className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-gray-600 placeholder:text-gray-500"
+                      autoComplete="email"
+                      inputMode="email"
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-white/20 placeholder:text-gray-500"
                       required
                     />
                   </div>
@@ -214,7 +231,9 @@ const Contact = () => {
                       type="tel"
                       name="user_phone"
                       placeholder="+1 (555) 123-4567"
-                      className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-gray-600 placeholder:text-gray-500"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all hover:border-white/20 placeholder:text-gray-500"
                     />
                   </div>
                 </div>
@@ -228,18 +247,15 @@ const Contact = () => {
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all cursor-pointer hover:border-gray-600"
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all cursor-pointer hover:border-white/20"
                       required
                     >
                       <option value="">Select project type</option>
-                      <option value="Full-Stack Development">Full-Stack Development</option>
-                      <option value="Automation & AI">AI Integrations</option>
-                      <option value="WordPress Development">WordPress Development</option>
-                      <option value="Digital Marketing">Digital Marketing</option>
-                      <option value="Web Scraping">Web Scraping</option>
-                      <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="IT Consultation">IT Consultation</option>
-                      <option value="Other">Other</option>
+                      {projectTypes.map((type) => (
+                        <option key={type.value} value={type.value}>
+                          {type.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div>
@@ -249,16 +265,15 @@ const Contact = () => {
                     <select
                       value={selectedBudget}
                       onChange={(e) => setSelectedBudget(e.target.value)}
-                      className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all cursor-pointer hover:border-gray-600"
+                      className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all cursor-pointer hover:border-white/20"
                       required
                     >
                       <option value="">Select budget range</option>
-                      <option value="Under $500">Under $500</option>
-                      <option value="$500 - $1,000">$500 - $1,000</option>
-                      <option value="$1,000 - $3,000">$1,000 - $3,000</option>
-                      <option value="$3,000 - $5,000">$3,000 - $5,000</option>
-                      <option value="$5,000+">$5,000+</option>
-                      <option value="Not sure yet">Not sure yet</option>
+                      {budgetOptions.map((budget) => (
+                        <option key={budget} value={budget}>
+                          {budget}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -270,9 +285,9 @@ const Contact = () => {
                   </label>
                   <textarea
                     name="message"
-                    placeholder="Tell us about your project, requirements, and goals..."
+                    placeholder="Tell me about your project, requirements, and goals..."
                     rows="5"
-                    className="p-4 rounded-xl bg-[#1a2332] border border-gray-700 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all resize-none hover:border-gray-600 placeholder:text-gray-500"
+                    className="p-4 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 w-full text-white transition-all resize-none hover:border-white/20 placeholder:text-gray-500"
                     required
                   ></textarea>
                 </div>

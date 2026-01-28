@@ -13,6 +13,45 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+const termsSections = [
+  {
+    title: "Acceptance of Terms",
+    icon: <FaGavel className="text-teal-400 text-2xl sm:text-3xl" />,
+    content:
+      "By accessing or using Digital Playground Portfolio, you agree to comply with these Terms & Conditions. If you disagree, please refrain from using my services.",
+  },
+  {
+    title: "Use of Services",
+    icon: <FaUserShield className="text-cyan-400 text-2xl sm:text-3xl" />,
+    content:
+      "You may use my services only for lawful purposes. You are responsible for ensuring your actions comply with all applicable laws and these terms.",
+  },
+  {
+    title: "Intellectual Property",
+    icon: <FaLock className="text-indigo-400 text-2xl sm:text-3xl" />,
+    content:
+      "All content, designs, and materials on this website are owned by me or my licensors. Reproduction or distribution without permission is prohibited.",
+  },
+  {
+    title: "User Content",
+    icon: <FaEdit className="text-purple-400 text-2xl sm:text-3xl" />,
+    content:
+      "Any content you submit (e.g., comments, feedback) grants me a non-exclusive, royalty-free license to use, modify, and display it responsibly.",
+  },
+  {
+    title: "Limitation of Liability",
+    icon: <FaInfoCircle className="text-yellow-400 text-2xl sm:text-3xl" />,
+    content:
+      "Digital Playground is not liable for damages arising from your use of my services, including indirect or consequential losses.",
+  },
+  {
+    title: "Changes to Terms",
+    icon: <FaCookieBite className="text-red-400 text-2xl sm:text-3xl" />,
+    content:
+      "I may update these Terms & Conditions periodically. Continued use of my services after updates constitutes acceptance of the revised terms.",
+  },
+];
+
 const TermsConditions = () => {
   const navigate = useNavigate();
 
@@ -20,45 +59,6 @@ const TermsConditions = () => {
     if (window.history.length > 1) navigate(-1);
     else navigate("/");
   };
-
-  const termsSections = [
-    {
-      title: "Acceptance of Terms",
-      icon: <FaGavel className="text-teal-400 text-2xl sm:text-3xl" />,
-      content:
-        "By accessing or using Digital Playground Portfolio, you agree to comply with these Terms & Conditions. If you disagree, please refrain from using our services.",
-    },
-    {
-      title: "Use of Services",
-      icon: <FaUserShield className="text-cyan-400 text-2xl sm:text-3xl" />,
-      content:
-        "You may use our services only for lawful purposes. You are responsible for ensuring your actions comply with all applicable laws and these terms.",
-    },
-    {
-      title: "Intellectual Property",
-      icon: <FaLock className="text-indigo-400 text-2xl sm:text-3xl" />,
-      content:
-        "All content, designs, and materials on this website are owned by Digital Playground or its licensors. Reproduction or distribution without permission is prohibited.",
-    },
-    {
-      title: "User Content",
-      icon: <FaEdit className="text-purple-400 text-2xl sm:text-3xl" />,
-      content:
-        "Any content you submit (e.g., comments, feedback) grants us a non-exclusive, royalty-free license to use, modify, and display it responsibly.",
-    },
-    {
-      title: "Limitation of Liability",
-      icon: <FaInfoCircle className="text-yellow-400 text-2xl sm:text-3xl" />,
-      content:
-        "Digital Playground is not liable for damages arising from your use of our services, including indirect or consequential losses.",
-    },
-    {
-      title: "Changes to Terms",
-      icon: <FaCookieBite className="text-red-400 text-2xl sm:text-3xl" />,
-      content:
-        "We may update these Terms & Conditions periodically. Continued use of our services after updates constitutes acceptance of the revised terms.",
-    },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-transparent text-gray-100 transition-colors duration-500">
@@ -79,7 +79,7 @@ const TermsConditions = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-3xl sm:text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500 leading-tight flex-1"
+            className="text-3xl sm:text-5xl font-semibold text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500 leading-tight flex-1"
           >
             Terms & Conditions
           </motion.h1>
@@ -88,7 +88,7 @@ const TermsConditions = () => {
         </div>
 
         <p className="mb-12 text-center text-gray-300 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-          These Terms & Conditions govern your use of the Digital Playground Portfolio. Please read carefully to understand your rights and responsibilities while using our website and services.
+          These Terms & Conditions govern your use of the Digital Playground Portfolio. Please read carefully to understand your rights and responsibilities while using my website and services.
         </p>
 
         {/* Terms Sections */}

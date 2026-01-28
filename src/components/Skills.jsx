@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaReact, FaNodeJs, FaPython, FaWordpress, FaHtml5, FaCss3Alt, FaJs, FaChartLine, FaDatabase, FaRobot } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiExpress, SiNextdotjs, SiGoogleads, SiPostgresql, SiMysql, SiSelenium, SiJest, SiN8N, SiTensorflow } from "react-icons/si";
+import { FaReact, FaNodeJs, FaPython, FaWordpress, FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
+import { SiTailwindcss, SiMongodb, SiExpress, SiNextdotjs, SiGoogleads, SiPostgresql, SiMysql, SiSelenium, SiN8N, SiTensorflow } from "react-icons/si";
 import { MdTrendingUp, MdAutoFixHigh } from "react-icons/md";
 import { TbBrain } from "react-icons/tb";
 
@@ -127,7 +127,7 @@ const Skills = () => {
           {/* Left Side - Description */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-4">
                 {activeSkill.title}
               </h2>
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -172,7 +172,7 @@ const Skills = () => {
           {/* Right Side - Tech Stack */}
           <div>
             <div className="rounded-2xl p-8 border border-gray-800 bg-black/40">
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="text-2xl font-semibold text-white mb-6">
                 My {activeSkill.title} Tech Stack
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -186,7 +186,7 @@ const Skills = () => {
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-3xl">{tech.icon}</span>
-                      <h4 className="font-bold text-white text-base">
+                      <h4 className="font-semibold text-white text-base">
                         {tech.name}
                       </h4>
                     </div>

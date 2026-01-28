@@ -2,10 +2,86 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import SectionHeading from "../components/ui/SectionHeading";
 import {
-    FaCode, FaPaintBrush, FaBullhorn, FaWordpress, FaComments, FaCheckCircle, FaRobot, FaPython
+    FaCode, FaPaintBrush, FaBullhorn, FaWordpress, FaComments, FaCheckCircle, FaRobot
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
+const services = [
+    {
+        title: "Full-Stack Development",
+        icon: <FaCode className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "High-performance, scalable web applications using React.js, Node.js, and MongoDB for modern digital solutions.",
+        includes: [
+            "MERN Stack Development",
+            "RESTful API Development",
+            "Database Design & Optimization",
+            "Cloud Deployment & Hosting",
+        ],
+    },
+    {
+        title: "Automation & AI Solutions",
+        icon: <FaRobot className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "Intelligent automation solutions using Python, n8n, and AI/ML technologies to streamline your business processes.",
+        includes: [
+            "n8n Workflow Automation",
+            "Python Scripting & Bots",
+            "Web Scraping Solutions",
+            "LSTM & ML Model Development",
+        ],
+    },
+    {
+        title: "Digital Marketing",
+        icon: <FaBullhorn className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "Data-driven strategies to grow your online presence and amplify brand recognition with measurable results.",
+        includes: [
+            "Social Media Marketing",
+            "Content Marketing",
+            "SEO & Analytics",
+            "Paid Campaigns (Google Ads, Meta)",
+        ],
+    },
+    {
+        title: "WordPress Development",
+        icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "Tailored WordPress solutions that are fast, secure, and flexible to meet your business needs.",
+        includes: [
+            "Theme Customization",
+            "Plugin Development",
+            "SEO-Friendly Setup",
+            "WooCommerce Integration",
+        ],
+    },
+    {
+        title: "UI/UX Designing",
+        icon: <FaPaintBrush className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "Engaging, user-focused interfaces designed for smooth navigation and impactful experiences.",
+        includes: [
+            "Wireframing & Prototyping",
+            "Interactive UI Designs",
+            "Responsive Layouts",
+            "User Journey Mapping",
+        ],
+    },
+    {
+        title: "IT Consultation",
+        icon: <FaComments className="text-5xl text-cyan-400 mb-5 self-center" />,
+        description:
+            "Expert insights for process improvement, technology adoption, and digital strategy for remote teams.",
+        includes: [
+            "Business Process Automation",
+            "Technology Stack Planning",
+            "Project Architecture & Roadmaps",
+            "Remote Team Solutions",
+        ],
+    },
+];
 
 const Services = () => {
     const navigate = useNavigate();
@@ -20,81 +96,6 @@ const Services = () => {
         visible: { transition: { staggerChildren: 0.2 } },
     };
 
-    const services = [
-        {
-            title: "Full-Stack Development",
-            icon: <FaCode className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "High-performance, scalable web applications using React.js, Node.js, and MongoDB for modern digital solutions.",
-            includes: [
-                "MERN Stack Development",
-                "RESTful API Development",
-                "Database Design & Optimization",
-                "Cloud Deployment & Hosting",
-            ],
-        },
-        {
-            title: "Automation & AI Solutions",
-            icon: <FaRobot className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Intelligent automation solutions using Python, n8n, and AI/ML technologies to streamline your business processes.",
-            includes: [
-                "n8n Workflow Automation",
-                "Python Scripting & Bots",
-                "Web Scraping Solutions",
-                "LSTM & ML Model Development",
-            ],
-        },
-        {
-            title: "Digital Marketing",
-            icon: <FaBullhorn className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Data-driven strategies to grow your online presence and amplify brand recognition with measurable results.",
-            includes: [
-                "Social Media Marketing",
-                "Content Marketing",
-                "SEO & Analytics",
-                "Paid Campaigns (Google Ads, Meta)",
-            ],
-        },
-        {
-            title: "WordPress Development",
-            icon: <FaWordpress className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Tailored WordPress solutions — fast, secure, and flexible to meet your business needs.",
-            includes: [
-                "Theme Customization",
-                "Plugin Development",
-                "SEO-Friendly Setup",
-                "WooCommerce Integration",
-            ],
-        },
-        {
-            title: "UI/UX Designing",
-            icon: <FaPaintBrush className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Engaging, user-focused interfaces designed for smooth navigation and impactful experiences.",
-            includes: [
-                "Wireframing & Prototyping",
-                "Interactive UI Designs",
-                "Responsive Layouts",
-                "User Journey Mapping",
-            ],
-        },
-        {
-            title: "IT Consultation",
-            icon: <FaComments className="text-5xl text-cyan-400 mb-5 self-center" />,
-            description:
-                "Expert insights for process improvement, technology adoption, and digital strategy for remote teams.",
-            includes: [
-                "Business Process Automation",
-                "Technology Stack Planning",
-                "Project Architecture & Roadmaps",
-                "Remote Team Solutions",
-            ],
-        },
-    ];
-
     return (
         <div className="text-white min-h-screen flex flex-col bg-[#0a0a0a]">
             {/* Navbar */}
@@ -103,21 +104,21 @@ const Services = () => {
             {/* CTA Section */}
             <section className="py-12 px-6 text-center bg-gradient-to-b from-[#1a2332] to-[#0a0a0a] relative">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-                <motion.h1
+                <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-3xl md:text-5xl font-bold mb-4"
                 >
-                    
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
-                       My Services
-                    </span>
-                </motion.h1>
-                <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-400">
-                    Transforming your vision into impactful digital solutions — blending
-                    design, technology, and strategy for measurable growth.
-                </p>
+                    <SectionHeading
+                        title={
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">
+                                My Services
+                            </span>
+                        }
+                        subtitle="I turn your vision into impactful digital solutions, blending design, technology, and strategy for measurable growth."
+                        subtitleClassName="text-base sm:text-lg md:text-xl"
+                    />
+                </motion.div>
             </section>
 
             {/* Services Section */}
@@ -139,12 +140,12 @@ const Services = () => {
                             }}
                             className="p-6 md:p-8 rounded-2xl 
                 bg-black border-2 border-gray-800
-             hover:border-cyan-500/50 transition-all duration-300 flex flex-col  
-               font-bold relative"
+               hover:border-cyan-500/50 transition-all duration-300 flex flex-col  
+               font-normal relative"
                         >
                             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
                             {service.icon}
-                            <h3 className="text-xl md:text-2xl font-extrabold mb-3 text-teal-400">
+                            <h3 className="text-xl md:text-2xl font-semibold mb-3 text-teal-400">
                                 {service.title}
                             </h3>
                             <p className="text-sm md:text-base text-gray-300 mb-5 font-medium">

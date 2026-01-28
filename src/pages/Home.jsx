@@ -5,62 +5,68 @@ import Navbar from "../components/Navbar";
 import Skills from "../components/Skills";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import SectionHeading from "../components/ui/SectionHeading";
+import GradientButton from "../components/ui/GradientButton";
+import TechBadge from "../components/ui/TechBadge";
 import { FaCode, FaLaptopCode, FaBullhorn, FaArrowRight, FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
 import SkyPulse1 from "../assets/SkyPulse1.png";
 import stp1 from "../assets/stp1.webp";
-import courses from "../assets/courses.png";
+import lmss1 from "../assets/lmss1.png";
 import dronelogo from "../assets/dronelogo.png";
 import toda from "../assets/toda.png";
 
+const featuredProjects = [
+  {
+    title: "TeachGen LMS",
+    description: "WordPress-based learning management system with complete eLearning functionality",
+    image: lmss1,
+    tech: ["WordPress", "Tutor LMS", "PHP"],
+    link: "/projects",
+  },
+  {
+    title: "Smart Task Planner",
+    description: "Full-stack MERN task management with authentication and dark mode",
+    image: stp1,
+    tech: ["React", "Node.js", "MongoDB"],
+    link: "/projects",
+  },
+  {
+    title: "SkyPulse Weather App",
+    description: "Real-time weather app with dynamic gradients and location tracking",
+    image: SkyPulse1,
+    tech: ["React", "Weather API", "TailwindCSS"],
+    link: "/projects",
+  },
+];
+
+const services = [
+  {
+    icon: <FaCode className="text-4xl" />,
+    title: "Full-Stack Development",
+    points: ["MERN Stack Apps", "RESTful APIs", "Cloud Deployment"],
+    description:
+      "I build scalable, modern web applications using React.js, Node.js, and MongoDB with best practices, ensuring optimal performance, security, and user experience.",
+    link: "/services",
+  },
+  {
+    icon: <FaLaptopCode className="text-4xl" />,
+    title: "Automation & AI",
+    points: ["n8n Workflows", "Python Bots", "Web Scraping"],
+    description:
+      "I create intelligent automation solutions with n8n, Python, and AI/ML technologies to streamline business processes and increase productivity.",
+    link: "/services",
+  },
+  {
+    icon: <FaBullhorn className="text-4xl" />,
+    title: "Digital Marketing",
+    points: ["SEO Optimization", "Social Media", "Google Ads"],
+    description:
+      "I help businesses grow their online presence with data-driven SEO strategies, social media marketing, and targeted advertising campaigns.",
+    link: "/services",
+  },
+];
+
 const Home = () => {
-  const featuredProjects = [
-    {
-      title: "TeachGen LMS",
-      description: "WordPress-based learning management system with complete eLearning functionality",
-      image: courses,
-      tech: ["WordPress", "Tutor LMS", "PHP"],
-      link: "/projects"
-    },
-    {
-      title: "Smart Task Planner",
-      description: "Full-stack MERN task management with authentication and dark mode",
-      image: stp1,
-      tech: ["React", "Node.js", "MongoDB"],
-      link: "/projects"
-    },
-    {
-      title: "SkyPulse Weather App",
-      description: "Real-time weather app with dynamic gradients and location tracking",
-      image: SkyPulse1,
-      tech: ["React", "Weather API", "TailwindCSS"],
-      link: "/projects"
-    }
-  ];
-
-  const services = [
-    {
-      icon: <FaCode className="text-4xl" />,
-      title: "Full-Stack Development",
-      points: ["MERN Stack Apps", "RESTful APIs", "Cloud Deployment"],
-      description: "I build scalable, modern web applications using React.js, Node.js, and MongoDB with best practices, ensuring optimal performance, security, and user experience.",
-      link: "/services"
-    },
-    {
-      icon: <FaLaptopCode className="text-4xl" />,
-      title: "Automation & AI",
-      points: ["n8n Workflows", "Python Bots", "Web Scraping"],
-      description: "I create intelligent automation solutions with n8n, Python, and AI/ML technologies to streamline business processes and increase productivity.",
-      link: "/services"
-    },
-    {
-      icon: <FaBullhorn className="text-4xl" />,
-      title: "Digital Marketing",
-      points: ["SEO Optimization", "Social Media", "Google Ads"],
-      description: "I help businesses grow their online presence with data-driven SEO strategies, social media marketing, and targeted advertising campaigns.",
-      link: "/services"
-    }
-  ];
-
   return (
     <>
       <Navbar />
@@ -136,16 +142,16 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
-                  Featured Projects
-                </span>
-              </h2>
-              <p className="text-gray-400 text-lg">
-                Explore some of my recent work and client projects
-              </p>
+              <SectionHeading
+                title={
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
+                    Featured Projects
+                  </span>
+                }
+                subtitle="Explore selected work and recent client projects"
+              />
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -167,16 +173,16 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
                     <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech, i) => (
-                        <span
+                        <TechBadge
                           key={i}
-                          className="px-2 py-1 text-xs rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                          className="bg-cyan-500/10 text-cyan-400 border-cyan-500/20"
                         >
                           {tech}
-                        </span>
+                        </TechBadge>
                       ))}
                     </div>
                   </div>
@@ -190,13 +196,10 @@ const Home = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
-              >
+              <GradientButton as={Link} to="/projects" className="inline-flex items-center gap-2">
                 View All Projects
                 <FaArrowRight />
-              </Link>
+              </GradientButton>
             </motion.div>
           </div>
         </section>
@@ -214,16 +217,16 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
-                  What I Offer
-                </span>
-              </h2>
-              <p className="text-gray-400 text-lg">
-                Professional services to bring your ideas to life
-              </p>
+              <SectionHeading
+                title={
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
+                    What I Offer
+                  </span>
+                }
+                subtitle="Services designed to turn ideas into reliable products"
+              />
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -254,7 +257,7 @@ const Home = () => {
                         <div className="w-20 h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400">
                           {service.icon}
                         </div>
-                        <h3 className="text-xl font-bold text-center text-white">
+                        <h3 className="text-xl font-semibold text-center text-white">
                           {service.title}
                         </h3>
                       </div>
@@ -300,13 +303,10 @@ const Home = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
-              >
+              <GradientButton as={Link} to="/services" className="inline-flex items-center gap-2">
                 Explore All Services
                 <FaArrowRight />
-              </Link>
+              </GradientButton>
             </motion.div>
           </div>
         </section>
@@ -319,13 +319,15 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
-                  Trusted by Startups Worldwide
-                </span>
-              </h2>
+              <SectionHeading
+                title={
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
+                    Trusted by Startups Worldwide
+                  </span>
+                }
+              />
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -345,8 +347,8 @@ const Home = () => {
                   />
                 </div>
                 <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-6 w-full text-center hover:border-cyan-500/50 transition-all">
-                  <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
-                    ALPHA TANGO
+                  <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
+                     ALPHA TANGO
                   </h3>
                   <p className="text-gray-400 text-sm mb-4">DRONE SERVICES</p>
                   <a 
@@ -377,8 +379,8 @@ const Home = () => {
                   />
                 </div>
                 <div className="bg-gradient-to-br from-gray-900 to-black border border-cyan-500/30 rounded-2xl p-6 w-full text-center hover:border-cyan-500/50 transition-all">
-                  <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
-                    JOINTODA
+                  <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 mb-2">
+                     JOINTODA
                   </h3>
                   <p className="text-gray-400 text-sm mb-4">TRUCK OWNERS & DRIVERS</p>
                   <a 
@@ -405,25 +407,26 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6">
               Ready to Start Your{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
                 Next Project?
               </span>
             </h2>
             <p className="text-gray-300 text-lg mb-8">
-              Let's collaborate and turn your vision into reality. I'm available for remote projects worldwide.
+              Let's collaborate and turn your vision into reality. I’m available for remote work worldwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <GradientButton
+                as={Link}
                 to="/contact"
-                className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105"
+                className="px-10 py-4 text-lg"
               >
                 Get in Touch
-              </Link>
+              </GradientButton>
               <Link
                 to="/about"
-                className="bg-gray-800 hover:bg-gray-700 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 border border-gray-700 hover:border-cyan-500/50"
+                className="bg-gray-800 hover:bg-gray-700 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 border border-gray-700 hover:border-cyan-500/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
               >
                 Learn More About Me
               </Link>
